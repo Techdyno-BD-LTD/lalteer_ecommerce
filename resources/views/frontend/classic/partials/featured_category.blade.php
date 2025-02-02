@@ -38,6 +38,9 @@
                                 alt="{{ $category->getTranslation('name') }}"
                                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                         </div>
+                        <div class="home_category_name">
+
+                        </div>
                     @endforeach
                 </div>
             </div>
