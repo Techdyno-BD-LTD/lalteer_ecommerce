@@ -57,6 +57,12 @@
 
 @section('content')
     <section class="mb-4 pt-3">
+        <div class="product-details-bredcrumb">
+            <img src="{{ static_asset('assets/img/Frame 1171276523.png') }}" alt="" style="width: 100%; height: 200px;">
+        </div>
+    </section>
+
+    <section class="mb-4 pt-3">
         <div class="container">
             <div class="bg-white py-3">
                 <div class="row">
