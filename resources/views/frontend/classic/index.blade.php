@@ -121,64 +121,12 @@
     </div> --}}
 
     <!-- Featured Categories -->
-    @if (count($featured_categories) > 0)
-        <section class="mb-2 mb-md-3 mt-2 mt-md-3">
-            <div class="container">
-                <div class="bg-white">
-                    <!-- Top Section -->
-                    <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
-                        <!-- Title -->
-                        <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">
-                            <span class="">{{ translate('Featured Categories') }}</span>
-                        </h3>
-                        <!-- Links -->
-                        <div class="d-flex">
-                            <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary"
-                                href="{{ route('categories.all') }}">{{ translate('View All Categories') }}</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categories -->
-                <div class="bg-white px-3">
-                    <div class="row border-top border-right">
-                        @foreach ($featured_categories->take(6) as $key => $category)
-                            @php
-                                $category_name = $category->getTranslation('name');
-                            @endphp
-                            <div class="col-xl-4 col-md-6 border-left border-bottom py-3 py-md-2rem">
-                                <div class="d-sm-flex text-center text-sm-left">
-                                    <div class="mb-3">
-                                        <img src="{{ isset($category->bannerImage->file_name) ? my_asset($category->bannerImage->file_name) : static_asset('assets/img/placeholder.jpg') }}"
-                                            class="lazyload w-150px h-auto mx-auto has-transition"
-                                            alt="{{ $category->getTranslation('name') }}"
-                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                                    </div>
-                                    <div class="px-2 px-lg-4">
-                                        <h6 class="text-dark mb-0 text-truncate-2">
-                                            <a class="text-reset fw-700 fs-14 hov-text-primary"
-                                                href="{{ route('products.category', $category->slug) }}"
-                                                title="{{ $category_name }}">
-                                                {{ $category_name }}
-                                            </a>
-                                        </h6>
-                                        @foreach ($category->childrenCategories->take(5) as $key => $child_category)
-                                            <p class="mb-0 mt-3">
-                                                <a href="{{ route('products.category', $child_category->slug) }}"
-                                                    class="fs-13 fw-300 text-reset hov-text-primary animate-underline-primary">
-                                                    {{ $child_category->getTranslation('name') }}
-                                                </a>
-                                            </p>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
 
+    <!-- Best Selling  -->
+    <div id="section_best_selling">
+
+    </div>
+    @include('frontend.classic.partials.featured_category')
     <!-- Featured Products -->
     <div id="section_featured">
 
@@ -228,15 +176,12 @@
 
 
 
-    <!-- Best Selling  -->
-    <div id="section_best_selling">
 
-    </div>
 
     <!-- New Products -->
-    <div id="section_newest">
+    {{-- <div id="section_newest">
 
-    </div>
+    </div> --}}
     <!-- Banner section 1 -->
     @php $homeBanner1Images = get_setting('home_banner1_images', null, $lang);   @endphp
     @if ($homeBanner1Images != null)

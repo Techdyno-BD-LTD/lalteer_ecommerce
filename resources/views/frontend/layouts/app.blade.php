@@ -75,6 +75,7 @@
     <link rel="stylesheet" href="{{ static_asset('assets/css/all.min.css') }}">
 
 <link rel="stylesheet" href="{{ static_asset('assets/css/styleHim.css?v1') }}">
+<link rel="stylesheet" href="{{ static_asset('assets/css/responsiveHim.css?v1') }}">
     <script>
         var AIZ = AIZ || {};
         AIZ.local = {
