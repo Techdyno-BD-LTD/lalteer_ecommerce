@@ -57,9 +57,10 @@
 
 @section('content')
     <section class="mb-4 pt-3">
-        <div class="product-details-bredcrumb">
+        <div class="product-details-bredcrumb" style="position: relative; text-align: center;">
             <img src="{{ static_asset('assets/img/Frame 1171276523.png') }}" alt="" style="width: 100%; height: 200px;">
-        </div>
+            <h3 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 24px;">Product Details</h3>
+        </div>        
     </section>
 
     <section class="mb-4 pt-3">
