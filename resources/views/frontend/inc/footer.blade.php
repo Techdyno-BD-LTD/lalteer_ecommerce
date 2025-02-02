@@ -168,20 +168,25 @@
             <!-- about & subscription -->
 
             <div class="col-xl-3 col-lg-3">
-                <div class="mb-4 text-secondary text-justify">
+                <div class="mb-4 text-dark text-justify">
                     {!! get_setting('about_us_description', null, App::getLocale()) !!}
                 </div>
                 {{-- @if (get_setting('newsletter_activation'))
-                    <h5 class="fs-14 fw-700 text-dark mt-1 mb-3">{{ translate('Subscribe to our newsletter for regular updates about Offers, Coupons & more') }}</h5>
+                    <h5 class="fs-14 fw-700 text-dark mt-1 mb-3">
+                        {{ translate('Subscribe to our newsletter for regular updates about Offers, Coupons & more') }}
+                    </h5>
                     <div class="mb-3">
                         <form method="POST" action="{{ route('subscribers.store') }}">
                             @csrf
                             <div class="row gutters-10">
                                 <div class="col-8">
-                                    <input type="email" class="form-control border-secondary rounded-0 text-white w-100 bg-transparent" placeholder="{{ translate('Your Email Address') }}" name="email" required>
+                                    <input type="email"
+                                        class="form-control border-secondary rounded-0 text-white w-100 bg-transparent"
+                                        placeholder="{{ translate('Your Email Address') }}" name="email" required>
                                 </div>
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary rounded-0 w-100">{{ translate('Subscribe') }}</button>
+                                    <button type="submit"
+                                        class="btn btn-primary rounded-0 w-100">{{ translate('Subscribe') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -192,7 +197,7 @@
                 <!-- Quick links -->
                 <div class="{{ $col_values }}">
                     <div class="text-center text-sm-left mt-4">
-                        <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">
+                        <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">
                             {{ get_setting('widget_one', null, App::getLocale()) }}
                         </h4>
                         <ul class="list-unstyled">
@@ -224,8 +229,8 @@
             <div class="col-md-3">
                 <!-- My Account -->
                 <div class="{{ $col_values }}">
-                    <div class="text-center text-sm-left mt-4">
-                        <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">{{ translate('Account') }}</h4>
+                    <div class="text-dark text-sm-left mt-4">
+                        <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('Account') }}</h4>
                         <ul class="list-unstyled">
                             @if (Auth::check())
                                 <li class="mb-2">
@@ -275,7 +280,7 @@
                 <!-- Contacts -->
                 <div class="{{ $col_values }}">
                     <div class="text-center text-sm-left mt-4">
-                        <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h4>
+                        <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h4>
                         <ul class="list-unstyled">
 
                             <li class="mb-2">

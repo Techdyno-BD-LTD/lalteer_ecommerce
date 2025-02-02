@@ -16,6 +16,7 @@
                 </div>
             </div>
             <!-- Categories -->
+
             <div class="bg-white position-relative">
                 <img width="100%" src="{{ static_asset('assets/img/home_category.jpg') }}" alt="">
 
@@ -32,18 +33,21 @@
                         @php
                             $category_name = $category->getTranslation('name');
                         @endphp
-                        <div class="text-center">
-                            <img src="{{ isset($category->bannerImage->file_name) ? my_asset($category->bannerImage->file_name) : static_asset('assets/img/placeholder.jpg') }}"
-                                class="lazyload h-auto mx-auto has-transition"
-                                alt="{{ $category->getTranslation('name') }}"
-                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                        </div>
-                        <div class="home_category_name">
-
-                        </div>
+                        <a href="{{ route('products.category', $category->slug) }}">
+                            <div class="text-center category_" style="position: relative;">
+                                <img src="{{ isset($category->bannerImage->file_name) ? my_asset($category->bannerImage->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                    class="lazyload h-auto mx-auto has-transition"
+                                    alt="{{ $category->getTranslation('name') }}"
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                <div class="home_category_name">
+                                    {{ $category->name }}
+                                </div>
+                            </div>
+                        </a>
                     @endforeach
                 </div>
             </div>
+
 
 
 
