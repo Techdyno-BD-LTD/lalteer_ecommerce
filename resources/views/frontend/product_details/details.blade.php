@@ -34,7 +34,7 @@
             </div>
         @endif
     </div>
-    <div class="row align-items-center">
+    {{-- <div class="row align-items-center">
         @if(get_setting('product_query_activation') == 1)
             <!-- Ask about this product -->
             <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mb-3">
@@ -76,7 +76,7 @@
                 </div>
             @endif
         </div>
-    </div>
+    </div> --}}
 
 
     <!-- Brand Logo & Name -->
@@ -107,7 +107,7 @@
     @endif
 
     <!-- Seller Info -->
-    <div class="d-flex flex-wrap align-items-center">
+    {{-- <div class="d-flex flex-wrap align-items-center">
         <div class="d-flex align-items-center mr-4">
             <!-- Shop Name -->
             @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
@@ -157,7 +157,7 @@
         @endif
     </div>
 
-    <hr>
+    <hr> --}}
 
     <!-- For auction product -->
     @if ($detailedProduct->auction_product)
@@ -244,9 +244,9 @@
             <!-- Without Wholesale -->
             @if (home_price($detailedProduct) != home_discounted_price($detailedProduct))
                 <div class="row no-gutters mb-3">
-                    <div class="col-sm-2">
+                    {{-- <div class="col-sm-2">
                         <div class="text-secondary fs-14 fw-400">{{ translate('Price') }}</div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
                             <!-- Discount Price -->
@@ -299,9 +299,9 @@
                 </div>
             @else
                 <div class="row no-gutters mb-3">
-                    <div class="col-sm-2">
+                    {{-- <div class="col-sm-2">
                         <div class="text-secondary fs-14 fw-400">{{ translate('Price') }}</div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
                             <!-- Discount Price -->
@@ -409,10 +409,10 @@
 
                 <!-- Quantity + Add to cart -->
                 <div class="row no-gutters mb-3">
-                    <div class="col-sm-2">
+                    {{-- <div class="col-sm-2">
                         <div class="text-secondary fs-14 fw-400 mt-2">{{ translate('Quantity') }}</div>
-                    </div>
-                    <div class="col-sm-10">
+                    </div> --}}
+                    <div class="col-sm-12">
                         <div class="product-quantity d-flex align-items-center">
                             <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
                                 <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
