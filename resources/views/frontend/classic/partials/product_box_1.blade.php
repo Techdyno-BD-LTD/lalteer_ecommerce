@@ -84,7 +84,8 @@
         <div class="product-overlay">
             <div class="overlay-content">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div style="font-weight:100 " class="category_nam text-white">Padma</div>
+                    <div style="font-weight:100 " class="category_nam text-white">
+                        {{ getCategoryName($product->category_id) }}</div>
                     <div class="text-white fs-16 fw-700 text-right">{{ home_discounted_base_price($product) }}
                         @if (home_base_price($product) != home_discounted_base_price($product))
                             <sup> <del class="fw-400 text-secondary mr-1">{{ home_base_price($product) }}</del></sup>
@@ -93,15 +94,14 @@
 
                 </div>
                 <div class="main_box ">
-
-                    <h3 class="text-white fs-32 mb-1 text-left">{{ $product->getTranslation('name') }} <sup
-                            style="font-size: 12px" class="">8gm</sup>
+                    <h3 class="text-white fs-32 mb-1 text-left">{{ $product->getTranslation('name') }}
+                        {{-- <sup style="font-size: 12px" class="">8gm</sup> --}}
                     </h3>
                     <span class="fs-12 mr-3 text-white"><i class="fa-solid fa-star f-12 pr-2"
                             style="color: #f0bc00;"></i>({{ $product->rating }})</span>
                 </div>
                 <div class="buy_now d-flex justify-content-center">
-                    <button class="btn btn-primary" onclick="showAddToCartModal({{ $product->id }})">Buy Now</button>
+                    <button class="btn btn-primary">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -110,9 +110,10 @@
     </div>
     <div class="pro_size d-flex justify-content-center align-items-center">
         <h4 class="mb-0 text-dark pr-2">Size : </h4>
-        <select name="" id="" class="form-control w-auto">
-            <option value="">10gm</option>
-        </select>
+        <div class="size_btn" onclick="showAddToCartModal({{ $product->id }})">
+            10ml <span><img width="30px" src="{{ static_asset('assets/img/down-arrow-5-svgrepo-com.svg') }}"
+                    alt=""></span>
+        </div>
     </div>
 
     {{-- <div class="p-2 p-md-3 text-left">

@@ -381,10 +381,6 @@
     <script src="{{ static_asset('assets/js/aiz-core.js?v=') }}{{ rand(1000, 9999) }}"></script>
 
 <script src="{{ static_asset('assets/js/all.min.js') }}"></script>
-
-<!-- Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     @if (get_setting('facebook_chat') == 1)
         <script type="text/javascript">
             window.fbAsyncInit = function() {
@@ -417,6 +413,7 @@
     </script>
 
     <script>
+        var checked = false;
         @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == '/')
 
             $.post('{{ route('home.section.featured') }}', {
@@ -628,8 +625,9 @@
                 getVariantPrice();
             });
         }
-
+        
         $('#option-choice-form input').on('change', function(){
+            checked = true;
             getVariantPrice();
         });
 
@@ -662,6 +660,9 @@
                         }
 
                         AIZ.extra.plusMinus();
+                        if(checked){
+                            addToCart();
+                        }
                     }
                 });
             }
@@ -685,6 +686,7 @@
         }
 
         function addToCart(){
+            checked = false;
             @if (Auth::check() && Auth::user()->user_type != 'customer')
                 AIZ.plugins.notify('warning', "{{ translate('Please Login as a customer to add products to the Cart.') }}");
                 return false;

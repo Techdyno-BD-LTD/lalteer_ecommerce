@@ -265,6 +265,22 @@ margin-left: 75px;
     border-radius: 4px;
     background: rgba(255, 255, 254, 0.28);
     white-space: nowrap;
+    position: relative;
+    top: -32px;
+}
+.size_btn{
+    display: flex;
+    padding: 1px 8px;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4.227px;
+    border: 1.057px solid var(--foundation-grey-light-active, #C8C8C8);
+    cursor: pointer;
+}
+.my_cart{
+display: flex;
+justify-content: space-between;
 }
 
 @media (min-width: 768px) {

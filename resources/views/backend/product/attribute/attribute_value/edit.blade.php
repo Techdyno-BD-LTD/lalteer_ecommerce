@@ -11,7 +11,7 @@
 
                 <form class="p-4" action="{{ route('update-attribute-value', $attribute_value->id) }}" method="POST">
                     <input name="_method" type="hidden" value="POST">
-                    <input type="hidden" name="attribute_id" value="{{ $attribute_value->attribute_id }}">
+                    <input type="hidden" name="attribute_id" value="{{ $attribute_value->variant-price }}">
                     @csrf
                     <div class="form-group row">
                         <label class="col-sm-3 col-from-label" for="Attribute Value">
