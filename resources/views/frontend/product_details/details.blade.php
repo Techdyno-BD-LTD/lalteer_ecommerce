@@ -250,7 +250,7 @@
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
                             <!-- Discount Price -->
-                            <strong class="fw-700 opacity-60" style="font-size: 28px;">
+                            <strong class="fw-700 opacity-60" style="font-size: 30px;">
                                 {{ home_discounted_price($detailedProduct) }}
                             </strong>
                             <!-- Home Price -->
@@ -294,6 +294,8 @@
                                         {{ $detailedProduct->earn_point }}</small>
                                 </div>
                             @endif
+                            <i class="fa-solid fa-percent"></i>
+                            <span class="text-danger fs-20">10 %</span>
                         </div>
                     </div>
                 </div>
@@ -305,7 +307,7 @@
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
                             <!-- Discount Price -->
-                            <strong class="fw-700 opacity-60" style="font-size: 28px;">
+                            <strong class="fw-700 opacity-60" style="font-size: 30px;">
                                 {{ home_discounted_price($detailedProduct) }}
                             </strong>
                             <!-- Unit -->
@@ -340,12 +342,62 @@
                                         {{ $detailedProduct->earn_point }}</small>
                                 </div>
                             @endif
+                            <div style="margin-left: 10px;">
+                                <i class="fa-solid fa-percent bg-success rounded-pill text-white"></i>
+                                <span class="text-danger fs-20">10 %</span>
+                            </div>
                         </div>
                     </div>
+                        
                 </div>
             @endif
         @endif
     @endif
+
+    <div>
+        <div class="text-success mb-3">
+            <span>Size: </span>
+            <span>100gm</span>
+        </div>
+        <div class="mb-4">
+            <p class="text-success">Variants</p>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row mb-2">
+                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
+                            <p class="text-success text-bold fs-20">50 ml</p>
+                            <p class="" style="margin-top: -30px;">৳ 20</p>
+                        </div>
+                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
+                            <p class="text-success text-bold fs-20">50 ml</p>
+                            <p class="" style="margin-top: -30px;">৳ 20</p>
+                        </div>
+                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
+                            <p class="text-success text-bold fs-20">50 ml</p>
+                            <p class="" style="margin-top: -30px;">৳ 20</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
+                            <p class="text-success text-bold fs-20">50 ml</p>
+                            <p class="" style="margin-top: -30px;">৳ 20</p>
+                        </div>
+                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
+                            <p class="text-success text-bold fs-20">50 ml</p>
+                            <p class="" style="margin-top: -30px;">৳ 20</p>
+                        </div>
+                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
+                            <p class="text-success text-bold fs-20">50 ml</p>
+                            <p class="" style="margin-top: -30px;">৳ 20</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     @if ($detailedProduct->auction_product != 1)
         <form id="option-choice-form">

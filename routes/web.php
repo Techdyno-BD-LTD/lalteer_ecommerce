@@ -1,55 +1,56 @@
 <?php
 
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\AizUploadController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CompareController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ConversationController;
-use App\Http\Controllers\CurrencyController;
-use App\Http\Controllers\CustomerPackageController;
-use App\Http\Controllers\CustomerProductController;
 use App\Http\Controllers\DemoController;
-use App\Http\Controllers\FollowSellerController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NoteController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\Payment\AamarpayController;
-use App\Http\Controllers\Payment\AuthorizenetController;
-use App\Http\Controllers\Payment\BkashController;
-use App\Http\Controllers\Payment\InstamojoController;
-use App\Http\Controllers\Payment\IyzicoController;
-use App\Http\Controllers\Payment\MercadopagoController;
-use App\Http\Controllers\Payment\NagadController;
-use App\Http\Controllers\Payment\NgeniusController;
-use App\Http\Controllers\Payment\PayhereController;
-use App\Http\Controllers\Payment\PaykuController;
-use App\Http\Controllers\Payment\PaymobController;
-use App\Http\Controllers\Payment\PaypalController;
-use App\Http\Controllers\Payment\PaystackController;
-use App\Http\Controllers\Payment\RazorpayController;
-use App\Http\Controllers\Payment\SslcommerzController;
-use App\Http\Controllers\Payment\StripeController;
-use App\Http\Controllers\Payment\TapController;
-use App\Http\Controllers\Payment\VoguepayController;
-use App\Http\Controllers\ProductQueryController;
-use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CompareController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AizUploadController;
 use App\Http\Controllers\SizeChartController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\Payment\TapController;
+use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\FollowSellerController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProductQueryController;
+use App\Http\Controllers\Payment\BkashController;
+use App\Http\Controllers\Payment\NagadController;
+use App\Http\Controllers\Payment\PaykuController;
+use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\Payment\IyzicoController;
+use App\Http\Controllers\Payment\PaymobController;
+use App\Http\Controllers\Payment\PaypalController;
+use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\CustomerPackageController;
+use App\Http\Controllers\CustomerProductController;
+use App\Http\Controllers\Payment\NgeniusController;
+use App\Http\Controllers\Payment\PayhereController;
+use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\Payment\AamarpayController;
+use App\Http\Controllers\Payment\PaystackController;
+use App\Http\Controllers\Payment\RazorpayController;
+use App\Http\Controllers\Payment\VoguepayController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Payment\InstamojoController;
+use App\Http\Controllers\Payment\SslcommerzController;
+use App\Http\Controllers\Payment\MercadopagoController;
+use App\Http\Controllers\Payment\AuthorizenetController;
+use App\Http\Controllers\AboutUsController;
 
 /*
   |--------------------------------------------------------------------------
@@ -482,3 +483,8 @@ Route::controller(PageController::class)->group(function () {
 Route::controller(ContactController::class)->group(function () {
     Route::post('/contact', 'contact')->name('contact');
 });
+
+
+
+// add new route
+Route::get('/about-us', [AboutUsController::class, 'AboutUs'])->name('aboutus');

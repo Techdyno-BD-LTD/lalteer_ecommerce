@@ -40,10 +40,13 @@
 </div>
 @php
     $bannerImage = \App\Models\BusinessSetting::where('type', 'home_banner3_images')->first();
-    $value = json_decode($bannerImage['value'], true);
-    $firstValue = $value[0];
+    $value = $bannerImage ? json_decode($bannerImage->value, true) : null;
+    $firstValue = $value && isset($value[0]) ? $value[0] : null;
 @endphp
-<div style="background-image: url('{{ uploaded_asset($firstValue) }}');" class="below_slider_wrapper">
+<div 
+    style="background-image: url('{{ $firstValue ? uploaded_asset($firstValue) : asset('default-placeholder-image.jpg') }}');" 
+    class="below_slider_wrapper">
+
 
     <div class="container below_slider">
         <div class="item_1">
