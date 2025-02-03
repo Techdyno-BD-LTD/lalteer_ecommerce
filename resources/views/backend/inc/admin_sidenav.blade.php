@@ -1887,11 +1887,11 @@
                     </a>
                     <ul class="aiz-side-nav-list level-2">
                         @can('features_activation')
-                       {{-- <li class="aiz-side-nav-item">
+                       <li class="aiz-side-nav-item">
                             <a href="{{route('activation.index')}}" class="aiz-side-nav-link">
                                 <span class="aiz-side-nav-text">{{translate('Features activation')}}</span>
                             </a>
-                        </li> --}}
+                        </li>
                         @endcan
                         @can('language_setup')
                         <li class="aiz-side-nav-item">
