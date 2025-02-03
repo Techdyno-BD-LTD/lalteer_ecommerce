@@ -4,14 +4,14 @@
     @endphp
     
     <!-- Gallery Images -->
-    <div class="col-12">
+    <div class="col-12 mt-4">
         <div class="aiz-carousel product-gallery arrow-inactive-transparent arrow-lg-none"
             data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true' data-arrows='true'>
             @if ($detailedProduct->digital == 0)
                 @foreach ($detailedProduct->stocks as $key => $stock)
                     @if ($stock->image != null)
                         <div class="carousel-box img-zoom rounded-0">
-                            <img class="img-fluid h-auto lazyload mx-auto"
+                            <img class="product-details-big-img lazyload mx-auto"
                                 src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                 data-src="{{ uploaded_asset($stock->image) }}"
                                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
@@ -22,7 +22,7 @@
 
             @foreach ($photos as $key => $photo)
                 <div class="carousel-box img-zoom rounded-0">
-                    <img class="img-fluid h-auto lazyload mx-auto"
+                    <img class="product-details-big-img lazyload mx-auto"
                         src="{{ static_asset('assets/img/placeholder.jpg') }}" data-src="{{ uploaded_asset($photo) }}"
                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                 </div>

@@ -1,4 +1,4 @@
-<div class="bg-white border mb-4">
+<div class="mb-4">
     <div class="p-3 p-sm-4">
         <h3 class="fs-16 fw-700 mb-0">
             <span class="mr-4">{{ translate('Reviews & Ratings') }}</span>

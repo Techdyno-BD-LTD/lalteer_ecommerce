@@ -1,4 +1,4 @@
-<div class="bg-white mb-4 border p-3 p-sm-4">
+<div class="mb-4 p-3 p-sm-4">
     <!-- Tabs -->
     <div class="nav aiz-nav-tabs">
         <a href="#tab_default_1" data-toggle="tab"

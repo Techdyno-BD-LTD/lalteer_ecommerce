@@ -1,15 +1,15 @@
-<div class="bg-white border rounded-2">
+<div class="border rounded-2">
     <div class="p-3 p-sm-4">
         <h3 class="fs-16 fw-700 mb-0">
             <span class="mr-4 text-uppercase">{{ translate('Related Products') }}</span>
         </h3>
     </div>
     <div class="px-4">
-        <div class="aiz-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3"
+        <div class="aiz-carousel gutters-4 half-outside-arrow gap-3" data-items="4" data-xl-items="3"
             data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2"
             data-arrows='true' data-infinite='true'>
             @foreach (\App\Models\Product::inRandomOrder()->take(10)->get() as $key => $related_product)
-                <div class="carousel-box">
+                <div class="carousel-box bg-white border border-1">
                     <div class="aiz-card-box hov-shadow-md my-2 has-transition hov-scale-img">
                         <div class="">
                             <a href="{{ route('product', $related_product->slug) }}"
