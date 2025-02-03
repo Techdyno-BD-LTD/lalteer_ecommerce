@@ -1,8 +1,9 @@
 <div class="text-left">
+    <span class="text-dark">High brid</span>
     <!-- Product Name -->
-    <h2 class="mb-4 fs-16 fw-700 text-dark">
+    <h1 class="mb-2 mt-2 fs-1 fw-700 text-success">
         {{ $detailedProduct->getTranslation('name') }}
-    </h2>
+    </h1>   
 
     <div class="row align-items-center mb-3">
         <!-- Review -->
@@ -12,11 +13,11 @@
                     $total = 0;
                     $total += $detailedProduct->reviews->where('status', 1)->count();
                 @endphp
-                <span class="rating rating-mr-2">
+                <span class="rating rating-mr-2 text-warning">
                     {{ renderStarRating($detailedProduct->rating) }}
                 </span>
                 <span class="ml-1 opacity-50 fs-14">({{ $total }}
-                    {{ translate('reviews') }})</span>
+                    {{ translate('Customer Review ') }})</span>
             </div>
         @endif
         <!-- Estimate Shipping Time -->
@@ -491,6 +492,42 @@
             </div>
         @endif
     @else
+        
+    <div>
+        <div>
+            <span>
+                <img src="{{ static_asset('assets/img/Component 7.jpg') }}" alt="" class="img-fluid">
+            </span>
+            <span class="text-primary" style="margin-left: 10px;">
+                Exclusive Shipping
+            </span>
+        </div>
+        <div class="mt-2">
+            <span>
+                <img src="{{ static_asset('assets/img/Component 11.png') }}" alt="" class="img-fluid">
+            </span>
+            <span class="text-primary" style="margin-left: 10px;">
+                Payment Method
+            </span>
+        </div>
+        <div class="mt-2">
+            <span>
+                <img src="{{ static_asset('assets/img/Component 11 (1).png') }}" alt="" class="img-fluid">
+            </span>
+            <span class="text-primary" style="margin-left: 10px;">
+                7- Days Returns
+            </span>
+        </div>
+        <div class="mt-2">
+            <span>
+                <img src="{{ static_asset('assets/img/help center.png') }}" alt="" class="img-fluid">
+            </span>
+            <span class="text-primary" style="margin-left: 10px;">
+                Help Center
+            </span>
+        </div>
+    </div>
+
         <!-- Add to cart & Buy now Buttons -->
         <div class="mt-3">
             @if ($detailedProduct->digital == 0)
@@ -502,11 +539,11 @@
                     </a>
                 @else
                     <button type="button"
-                        class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
+                        class="btn btn-primary mr-2 add-to-cart fw-600 rounded-2 text-white btn-add-to-cart-size"
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                         <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
                     </button>
-                    <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                    <button type="button" class="btn btn-danger buy-now fw-600 add-to-cart rounded-2 btn-add-to-cart-size"
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                         <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                     </button>
@@ -516,11 +553,11 @@
                 </button>
             @elseif ($detailedProduct->digital == 1)
                 <button type="button"
-                    class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
+                    class="btn btn-primary mr-2 add-to-cart fw-600 min-w-150px rounded-2 text-white btn-add-to-cart-size"
                     @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                     <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
                 </button>
-                <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                <button type="button" class="btn btn-danger buy-now fw-600 add-to-cart min-w-150px rounded-2 btn-add-to-cart-size"
                     @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                     <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                 </button>
@@ -609,12 +646,12 @@
     @endif
 
     <!-- Share -->
-    <div class="row no-gutters mt-4">
+    {{-- <div class="row no-gutters mt-4">
         <div class="col-sm-2">
             <div class="text-secondary fs-14 fw-400 mt-2">{{ translate('Share') }}</div>
         </div>
         <div class="col-sm-10">
             <div class="aiz-share"></div>
         </div>
-    </div>
+    </div> --}}
 </div>

@@ -56,79 +56,105 @@
 @endsection
 
 @section('content')
-    <section class="mb-4 pt-3">
-        <div class="product-details-bredcrumb" style="position: relative; text-align: center;">
-            <img src="{{ static_asset('assets/img/Frame 1171276523.png') }}" alt="" style="width: 100%; height: 200px;">
-            <h3 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 24px;">Product Details</h3>
-        </div>        
-    </section>
-
-    <section class="mb-4 pt-3">
-        <div class="container">
-            <div class="bg-white py-3">
-                <div class="row">
-                    <!-- Product Image Gallery -->
-                    <div class="col-xl-5 col-lg-6 mb-4">
-                        @include('frontend.product_details.image_gallery')
-                    </div>
-
-                    <!-- Product Details -->
-                    <div class="col-xl-7 col-lg-6">
-                        @include('frontend.product_details.details')
+    <section style="background-image: url('{{ static_asset('assets/img/Frame 1171277141.jpg') }}'); background-size: cover; background-position: center;">
+        <section class="mb-1 pt-3">
+            <div class="product-details-bredcrumb" style="position: relative; text-align: center;">
+                <img src="{{ static_asset('assets/img/Frame 1171276523.png') }}" alt="" style="width: 100%; height: 200px;">
+                <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 26px;">Product Details</h2>
+            </div>        
+        </section>
+    
+        <section class="mb-4">
+            <div class="container">
+                <div class="py-3">
+                    <div class="row">
+                        <!-- Product Image Gallery -->
+                        <div class="col-xl-5 col-lg-6 mb-4 bg-white border border-success rounded-lg">
+                            @include('frontend.product_details.image_gallery')
+                        </div>
+    
+                        <!-- Product Details -->
+                        <div class="col-xl-7 col-lg-6">
+                            @include('frontend.product_details.details')
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="mb-4">
-        <div class="container">
-            @if ($detailedProduct->auction_product)
-                <!-- Reviews & Ratings -->
-                @include('frontend.product_details.review_section')
-                
-                <!-- Description, Video, Downloads -->
-                @include('frontend.product_details.description')
-                
-                <!-- Product Query -->
-                @include('frontend.product_details.product_queries')
-            @else
-                <div class="row gutters-16">
-                    <!-- Left side -->
-                    <div class="col-lg-3">
-                        <!-- Seller Info -->
-                        @include('frontend.product_details.seller_info')
-
-                        <!-- Top Selling Products -->
-                       <div class="d-none d-lg-block">
-                            @include('frontend.product_details.top_selling_products')
-                       </div>
-                    </div>
-
-                    <!-- Right side -->
-                    <div class="col-lg-9">
-                        
-                        <!-- Reviews & Ratings -->
-                        @include('frontend.product_details.review_section')
-
-                        <!-- Description, Video, Downloads -->
-                        @include('frontend.product_details.description')
-                        
-                        <!-- Frequently Bought products -->
-                        @include('frontend.product_details.frequently_bought_products')
-
-                        <!-- Product Query -->
-                        @include('frontend.product_details.product_queries')
-                        
-                        <!-- Top Selling Products -->
-                        <div class="d-lg-none">
-                             @include('frontend.product_details.top_selling_products')
+        </section>
+    
+        <section class="mb-4">
+            <div class="container">
+                @if ($detailedProduct->auction_product)
+                    <!-- Reviews & Ratings -->
+                    @include('frontend.product_details.review_section')
+                    
+                    <!-- Description, Video, Downloads -->
+                    @include('frontend.product_details.description')
+                    
+                    <!-- Product Query -->
+                    @include('frontend.product_details.product_queries')
+                @else
+                    <div class="row gutters-16">
+                        <!-- Left side -->
+                        <div class="col-lg-3">
+                            <!-- Seller Info -->
+                            @include('frontend.product_details.seller_info')
+    
+                            <!-- Top Selling Products -->
+                           {{-- <div class="d-none d-lg-block">
+                                @include('frontend.product_details.top_selling_products')
+                           </div> --}}
                         </div>
-
+    
+                        <!-- Right side -->
+                        <div class="col-lg-12">
+                            <!-- Nav Pills -->
+                            <ul class="nav nav-pills mb-3 d-flex flex-row justify-content-between p-2" id="pills-tab" role="tablist" style="background-color: #D9EDC4;">
+                                <li class="nav-item" role="presentation">
+                                    <button class="btn btn-primary border-0 rounded-2 active btn-add-specification-tab" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                        Specification
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="btn btn-primary border-0 rounded-2 btn-add-specification-tab" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                                        Description
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="btn btn-primary border-0 rounded-2 btn-add-specification-tab" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                        Reviews
+                                    </button>
+                                </li>
+                            </ul>
+                        
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                    @include('frontend.product_details.frequently_bought_products')
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                    @include('frontend.product_details.description')
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                                    @include('frontend.product_details.review_section')
+                                </div>
+                            </div>
+                        
+                            <!-- Additional Product Sections -->
+                            {{-- <div class="mt-4">
+                                @include('frontend.product_details.product_queries')
+                            </div> --}}
+                        
+                            <!-- Top Selling Products for Mobile -->
+                            <div class="mt-4">
+                                @include('preorder.frontend.product_details.related_products')
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
-            @endif
-        </div>
+                @endif
+            </div>
+        </section>
     </section>
 
 @endsection

@@ -382,6 +382,9 @@
 
 <script src="{{ static_asset('assets/js/all.min.js') }}"></script>
 
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     @if (get_setting('facebook_chat') == 1)
         <script type="text/javascript">
             window.fbAsyncInit = function() {

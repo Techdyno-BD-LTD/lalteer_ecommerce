@@ -1,5 +1,5 @@
 <div class="bg-white border mb-4">
-    <div class="p-3 p-sm-4 fs-16 fw-600">
+    <div class="p-3 p-sm-4 fs-2 fw-600">
         {{ translate('Top Selling Products') }}
     </div>
     <div class="px-3 px-sm-4 pb-4">
