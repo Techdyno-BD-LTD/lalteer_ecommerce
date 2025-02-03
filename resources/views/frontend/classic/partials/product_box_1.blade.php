@@ -84,7 +84,7 @@
         <div class="product-overlay">
             <div class="overlay-content">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div style="font-weight:100" class="category_nam">Padma</div>
+                    <div style="font-weight:100 " class="category_nam text-white">Padma</div>
                     <div class="text-white fs-16 fw-700 text-right">{{ home_discounted_base_price($product) }}
                         @if (home_base_price($product) != home_discounted_base_price($product))
                             <sup> <del class="fw-400 text-secondary mr-1">{{ home_base_price($product) }}</del></sup>
@@ -97,7 +97,7 @@
                     <h3 class="text-white fs-32 mb-1 text-left">{{ $product->getTranslation('name') }} <sup
                             style="font-size: 12px" class="">8gm</sup>
                     </h3>
-                    <span class="fs-12 mr-3"><i class="fa-solid fa-star f-12 pr-2"
+                    <span class="fs-12 mr-3 text-white"><i class="fa-solid fa-star f-12 pr-2"
                             style="color: #f0bc00;"></i>({{ $product->rating }})</span>
                 </div>
                 <div class="buy_now d-flex justify-content-center">
