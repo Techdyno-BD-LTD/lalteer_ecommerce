@@ -144,7 +144,7 @@
         </div>
     @endif
     <!-- Banner Section 3 -->
-    @php $homeBanner3Images = get_setting('home_banner3_images', null, $lang);   @endphp
+    {{-- @php $homeBanner3Images = get_setting('home_banner3_images', null, $lang);   @endphp
     @if ($homeBanner3Images != null)
         <div class="mb-2 mb-md-3 mt-2 mt-md-3">
             <div class="container">
@@ -172,7 +172,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <!-- Auction Product -->
     @if (addon_is_activated('auction'))
@@ -311,8 +311,7 @@
                     <div class="bg-white">
                         <div class="row no-gutters border-top border-left">
                             @foreach ($classified_products as $key => $classified_product)
-                                <div
-                                    class="col-xl-4 col-md-6 border-right border-bottom has-transition hov-shadow-out z-1">
+                                <div class="col-xl-4 col-md-6 border-right border-bottom has-transition hov-shadow-out z-1">
                                     <div class="aiz-card-box p-2 has-transition bg-white">
                                         <div class="row hov-scale-img">
                                             <div class="col-4 col-md-5 mb-3 mb-md-0">
