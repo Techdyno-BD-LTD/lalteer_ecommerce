@@ -1,5 +1,5 @@
 <div class="text-left">
-    <span class="text-dark">High brid</span>
+    <span class="opacity-60">High brid</span>
     <!-- Product Name -->
     <h1 class="mb-2 mt-2 fs-1 fw-700 text-success">
         {{ $detailedProduct->getTranslation('name') }}
@@ -250,7 +250,7 @@
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
                             <!-- Discount Price -->
-                            <strong class="fs-16 fw-700 text-primary">
+                            <strong class="fw-700 opacity-60" style="font-size: 28px;">
                                 {{ home_discounted_price($detailedProduct) }}
                             </strong>
                             <!-- Home Price -->
@@ -305,7 +305,7 @@
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
                             <!-- Discount Price -->
-                            <strong class="fs-16 fw-700 text-primary">
+                            <strong class="fw-700 opacity-60" style="font-size: 28px;">
                                 {{ home_discounted_price($detailedProduct) }}
                             </strong>
                             <!-- Unit -->
