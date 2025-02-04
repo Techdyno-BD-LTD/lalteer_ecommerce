@@ -2,11 +2,15 @@
     <div class="card rounded-0 border" style="background: linear-gradient(to bottom, #86C440, #245E1F);">
 
         @php
+            $inside_dhaka = (int) \App\Models\BusinessSetting::where('type', 'flat_rate_shipping_cost')->value('value');
+            $outside_dhaka = (int) \App\Models\BusinessSetting::where('type', 'shipping_cost_admin')->value('value');
+
             $subtotal_for_min_order_amount = 0;
             $subtotal = 0;
             $tax = 0;
             $product_shipping_cost = 0;
-            $shipping = 0;
+            // $shipping = $inside_dhaka;
+            $shipping = session('shipping_cost', 0);
             $coupon_code = null;
             $coupon_discount = 0;
             $total_point = 0;
@@ -82,8 +86,21 @@
 
                     <tr class="cart-subtotal">
                         <th class="pl-0 fs-15 fw-500 pt-0 pb-2 text-white border-top-0">{{ translate('Shipping') }}</th>
-                        <td class="text-right pr-0 fs-16 pt-0 pb-2 text-white border-top-0">100</td>
+                        <td>
+                            <span id="shipping_cost">{{ $shipping }}</span> BDT
+                        </td>
+
                     </tr>
+                    <tr>
+                        <td>
+                            <select id="shipping_location" class="form-control">
+                                <option value="inside_dhaka">Inside Dhaka</option>
+                                <option value="outside_dhaka">Outside Dhaka</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
                     <!-- Tax -->
                     {{-- <tr class="cart-tax">
                         <th class="pl-0 fs-14 fw-400 pt-0 pb-2 text-dark border-top-0">{{ translate('Tax') }}</th>
@@ -177,14 +194,56 @@
             @endif --}}
 
             @if ($proceed == 1)
-            <!-- Continue to Shipping -->
-            <div class="mt-2">
-                <a href="{{ route('checkout') }}" class="btn btn-danger btn-block fs-16 fw-600 rounded-2 px-4 text-white">
-                    {{ translate('Checkout')}}
-                </a>
-            </div>
+                <!-- Continue to Shipping -->
+                <div class="mt-2">
+                    <a href="{{ route('checkout') }}"
+                        class="btn btn-danger btn-block fs-16 fw-600 rounded-2 px-4 text-white">
+                        {{ translate('Checkout') }}
+                    </a>
+                </div>
             @endif
 
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("shipping_location").addEventListener("change", function() {
+            let location = this.value;
+
+            fetch("{{ route('update-shipping') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({
+                        location: location
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update the shipping cost
+                        document.getElementById("shipping_cost").innerText = data.shipping_cost;
+
+                        // Get current subtotal and coupon discount
+                        let subtotal = parseFloat(document.getElementById("sub_total").value);
+                        let couponDiscount =
+                            {{ $coupon_discount }}; // Use a JS variable for the coupon discount
+                        let total = subtotal + parseFloat(data.shipping_cost) - couponDiscount;
+
+                        // Update the total amount displayed on the page
+                        document.querySelector('.cart-total td').innerText = single_price(
+                            total); // Use the appropriate method to format the price.
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
+    });
+
+    // Helper function to format price (you can modify as needed)
+    function single_price(amount) {
+        return 'BDT ' + amount.toFixed(2); // Add proper formatting for the price
+    }
+</script>

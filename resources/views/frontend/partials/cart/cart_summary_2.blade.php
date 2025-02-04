@@ -18,7 +18,7 @@
                     cart_product_price($cartItem, $cartItem->product, false, false) * $cartItem['quantity'];
                 $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
                 $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
-                $product_shipping_cost = $cartItem['shipping_cost'];
+                $product_shipping_cost = session('shipping_cost', 0) / count($carts);
                 $shipping += $product_shipping_cost;
                 if (get_setting('coupon_system') == 1 && $cartItem->coupon_applied == 1) {
                     $coupon_code = $cartItem->coupon_code;
