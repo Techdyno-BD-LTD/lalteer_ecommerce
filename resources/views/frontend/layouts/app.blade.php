@@ -451,12 +451,12 @@
                 AIZ.plugins.slickCarousel();
             });
 
-            $.post('{{ route('home.section.preorder_products') }}', {
-                _token: '{{ csrf_token() }}'
-            }, function(data) {
-                $('#section_featured_preorder_products').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            // $.post('{{ route('home.section.preorder_products') }}', {
+            //     _token: '{{ csrf_token() }}'
+            // }, function(data) {
+            //     $('#section_featured_preorder_products').html(data);
+            //     AIZ.plugins.slickCarousel();
+            // });
 
             $.post('{{ route('home.section.home_categories') }}', {
                 _token: '{{ csrf_token() }}'

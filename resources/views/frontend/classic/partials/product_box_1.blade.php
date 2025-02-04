@@ -1,8 +1,8 @@
 @php
     $cart_added = [];
 @endphp
-<div class="aiz-card-box h-auto bg-white py-3 hov-scale-img">
-    <div class="position-relative img-fit overflow-hidden box_padding" >
+<div class="aiz-card-box h-auto bg-white py-3 hov-scale-img box_padding">
+    <div class="position-relative img-fit overflow-hidden ">
         @php
             $product_url = route('product', $product->slug);
             if ($product->auction_product == 1) {
@@ -110,9 +110,17 @@
     </div>
     <div class="pro_size d-flex justify-content-center align-items-center">
         <h4 class="mb-0 text-dark pr-2">Size : </h4>
+        @php
+            if ($product->choice_options != null) {
+                $choiceOptions = json_decode($product->choice_options, true);
+            }
+            $firstVariation = $choiceOptions[0]['values'][0] ?? null; // Get the first variation value
+
+        @endphp
+
         <div class="size_btn" onclick="showAddToCartModal({{ $product->id }})">
-            10ml <span><img width="30px" src="{{ static_asset('assets/img/down-arrow-5-svgrepo-com.svg') }}"
-                    alt=""></span>
+            {{ $firstVariation }} <span><img width="30px"
+                    src="{{ static_asset('assets/img/down-arrow-5-svgrepo-com.svg') }}" alt=""></span>
         </div>
     </div>
 
