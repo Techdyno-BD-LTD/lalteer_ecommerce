@@ -1,5 +1,5 @@
 <div class="z-3 sticky-top-lg">
-    <div class="card rounded-0 border" style="background: linear-gradient(to bottom, #86C440, #245E1F);">
+    <div class="card rounded-0 border">
 
         @php
             $subtotal_for_min_order_amount = 0;
@@ -31,9 +31,7 @@
         @endforeach
 
         <div class="card-header pt-4 pb-1 border-bottom-0">
-            <div class="align-items-center">
-                <h3 class="fs-18 fw-700 mb-0 text-white">{{ translate('Summary') }}</h3>
-            </div>
+            <h3 class="fs-16 fw-700 mb-0">{{ translate('Order Summary') }}</h3>
 
 
 
@@ -47,16 +45,27 @@
                 @endif
             </div>
         </div>
+        <div id="collapseDeliveryInfo" class="" aria-labelledby="headingDeliveryInfo"
+            data-parent="#accordioncCheckoutInfo">
+            <div class="card-body" id="delivery_info">
+                @include('frontend.partials.cart.delivery_info', [
+                    'carts' => $carts,
+                    'carrier_list' => $carrier_list ?? '',
+                    'shipping_info' => $shipping_info ?? '',
+                ])
+            </div>
+        </div>
+
         <div class="card-body pt-2">
 
             <div class="row gutters-5">
                 <!-- Total Products -->
-                {{-- <div class="@if (addon_is_activated('club_point')) col-6 @else col-12 @endif">
+                <div class="@if (addon_is_activated('club_point')) col-6 @else col-12 @endif">
                     <div class="d-flex align-items-center justify-content-between bg-primary p-2">
                         <span class="fs-13 text-white">{{ translate('Total Products') }}</span>
                         <span class="fs-13 fw-700 text-white">{{ sprintf('%02d', count($carts)) }}</span>
                     </div>
-                </div> --}}
+                </div>
                 @if (addon_is_activated('club_point'))
                     <!-- Total Clubpoint -->
                     <div class="col-6">
@@ -74,22 +83,17 @@
                 <tfoot>
                     <!-- Subtotal -->
                     <tr class="cart-subtotal">
-                        <th class="pl-0 fs-15 fw-500 pt-0 pb-2 text-white border-top-0">{{ translate('Subtotal') }}
+                        <th class="pl-0 fs-14 fw-400 pt-0 pb-2 text-dark border-top-0">{{ translate('Subtotal') }}
                             ({{ sprintf('%02d', count($carts)) }} {{ translate('Products') }})</th>
-                        <td class="text-right pr-0 fs-16 pt-0 pb-2 text-white border-top-0">
+                        <td class="text-right pr-0 fs-14 pt-0 pb-2 text-dark border-top-0">
                             {{ single_price($subtotal) }}</td>
                     </tr>
-
-                    <tr class="cart-subtotal">
-                        <th class="pl-0 fs-15 fw-500 pt-0 pb-2 text-white border-top-0">{{ translate('Shipping') }}</th>
-                        <td class="text-right pr-0 fs-16 pt-0 pb-2 text-white border-top-0">100</td>
-                    </tr>
                     <!-- Tax -->
-                    {{-- <tr class="cart-tax">
+                    <tr class="cart-tax">
                         <th class="pl-0 fs-14 fw-400 pt-0 pb-2 text-dark border-top-0">{{ translate('Tax') }}</th>
                         <td class="text-right pr-0 fs-14 pt-0 pb-2 text-dark border-top-0">{{ single_price($tax) }}
                         </td>
-                    </tr> --}}
+                    </tr>
                     @if ($proceed != 1)
                         <!-- Total Shipping -->
                         <tr class="cart-shipping">
@@ -129,16 +133,16 @@
                     @endphp
                     <!-- Total -->
                     <tr class="cart-total">
-                        <th class="pl-0 fs-16 text-white fw-700 border-top-0 pt-3 text-uppercase">
+                        <th class="pl-0 fs-14 text-dark fw-700 border-top-0 pt-3 text-uppercase">
                             {{ translate('Total') }}</th>
-                        <td class="text-right pr-0 fs-16 fw-700 text-white border-top-0 pt-3">
+                        <td class="text-right pr-0 fs-16 fw-700 text-primary border-top-0 pt-3">
                             {{ single_price($total) }}</td>
                     </tr>
                 </tfoot>
             </table>
 
             <!-- Coupon System -->
-            {{-- @if (get_setting('coupon_system') == 1)
+            @if (get_setting('coupon_system') == 1)
                 @if ($coupon_discount > 0 && $coupon_code)
                     <div class="mt-3">
                         <form class="" id="remove-coupon-form" enctype="multipart/form-data">
@@ -174,17 +178,45 @@
                         </form>
                     </div>
                 @endif
-            @endif --}}
-
-            @if ($proceed == 1)
-            <!-- Continue to Shipping -->
-            <div class="mt-2">
-                <a href="{{ route('checkout') }}" class="btn btn-danger btn-block fs-16 fw-600 rounded-2 px-4 text-white">
-                    {{ translate('Checkout')}}
-                </a>
-            </div>
             @endif
 
+            @if ($proceed == 1)
+                <!-- Continue to Shipping -->
+                <div class="mt-4">
+                    <a href="{{ route('checkout') }}" class="btn btn-primary btn-block fs-14 fw-700 rounded-0 px-4">
+                        {{ translate('Proceed to Checkout') }} ({{ sprintf('%02d', count($carts)) }})
+                    </a>
+                </div>
+            @endif
+
+        </div>
+
+        <div id="collapsePaymentInfo" class="collapse show" aria-labelledby="headingPaymentInfo"
+            data-parent="#accordioncCheckoutInfo">
+            <div class="card-body" id="payment_info">
+                @include('frontend.partials.cart.payment_info', [
+                    'carts' => $carts,
+                    'total' => $total,
+                ])
+
+
+
+                <div class="row align-items-center pt-3 mb-4">
+                    <!-- Return to shop -->
+                    <div class="col-6">
+                        <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0">
+                            <i class="las la-arrow-left fs-16"></i>
+                            {{ translate('Return to shop') }}
+                        </a>
+                    </div>
+                    <!-- Complete Ordert -->
+                    <div class="col-6 text-right">
+                        <button type="button" onclick="submitOrder(this)" id="submitOrderBtn"
+                            class="btn btn-primary fs-14 fw-700 rounded-0 px-4">{{ translate('Complete Order') }}</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

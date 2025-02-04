@@ -38,7 +38,7 @@
 
                             <!-- Cart Summary -->
                             <div class="col-lg-4 mt-4 mt-lg-0" id="cart_summary">
-                                @include('frontend.partials.cart.cart_summary', [
+                                @include('frontend.partials.cart.cart_summary_2', [
                                     'proceed' => 0,
                                     'carts' => $carts,
                                 ])
