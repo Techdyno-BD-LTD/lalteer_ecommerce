@@ -9581,7 +9581,7 @@ input[type="number"] {
 .form-control {
     padding: 0.6rem 1rem;
     font-size: 0.875rem;
-    height: calc(1.3125rem + 1.2rem + 2px);
+    height: calc(2.3125rem + 1.2rem + 2px);
     border: 1px solid #dfdfe6;
     color: #898b92;
 }

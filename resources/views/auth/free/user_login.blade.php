@@ -1,6 +1,80 @@
 @extends('auth.layouts.authentication')
 
 @section('content')
+    <style>
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px
+            }
+        }
+    </style>
     <section class="breadcrumb-section">
         <div class="product-details-breadcrumb position-relative text-center">
             <img src="{{ static_asset('assets/img/Frame 1171276523.png') }}" alt="Banner Image" class="w-100"
@@ -47,9 +121,9 @@
                                             @if (addon_is_activated('otp_system'))
                                                 <div class="form-group phone-form-group mb-1">
                                                     <label for="phone"
-                                                        class="fs-12 fw-700 text-soft-dark">{{ translate('Phone') }}</label>
+                                                        class="fs-15 fw-700 text-soft-dark">{{ translate('Phone') }}</label>
                                                     <input type="tel" id="phone-code"
-                                                        class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} rounded-0"
+                                                        class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} rounded-1"
                                                         value="{{ old('phone') }}" placeholder="" name="phone"
                                                         autocomplete="off">
                                                 </div>
@@ -58,7 +132,7 @@
 
                                                 <div class="form-group email-form-group mb-1 d-none">
                                                     <label for="email"
-                                                        class="fs-14 fw-700 text-soft-dark">{{ translate('Email Address') }}</label>
+                                                        class="fs-15 fw-700 text-soft-dark">{{ translate('Email Address') }}</label>
                                                     <input type="email"
                                                         class="form-control rounded-1 {{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                         value="{{ old('email') }}"
@@ -78,9 +152,9 @@
                                             @else
                                                 <div class="form-group">
                                                     <label for="email"
-                                                        class="fs-14 fw-700 text-soft-dark">{{ translate('Email Address') }}</label>
+                                                        class="fs-15 fw-700 text-soft-dark">{{ translate('Email Address') }}</label>
                                                     <input type="email"
-                                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0"
+                                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-1"
                                                         value="{{ old('email') }}"
                                                         placeholder="{{ translate('johndoe@example.com') }}" name="email"
                                                         id="email" autocomplete="off">
@@ -95,10 +169,10 @@
                                                 <!-- password -->
                                                 <div class="form-group">
                                                     <label for="password"
-                                                        class="fs-14 fw-700 text-soft-dark">{{ translate('Password') }}</label>
+                                                        class="fs-15 fw-700 text-soft-dark">{{ translate('Password') }}</label>
                                                     <div class="position-relative">
                                                         <input type="password"
-                                                            class="form-control rounded-0 {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                            class="form-control rounded-1 {{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                             placeholder="{{ translate('Password') }}" name="password"
                                                             id="password">
                                                         <i class="password-toggle las la-2x la-eye"></i>
@@ -120,12 +194,12 @@
                                                     <div class="col-7 text-right">
                                                         @if (get_setting('login_with_otp'))
                                                             <a href="javascript:void(0);"
-                                                                class="text-reset fs-12 fw-400 text-gray-dark hov-text-primary toggle-login-with-otp"
+                                                                class="text-reset fs-15 fw-400 text-gray-dark hov-text-primary toggle-login-with-otp"
                                                                 onclick="toggleLoginPassOTP(this)">{{ translate('Login With OTP') }}
                                                                 / </a>
                                                         @endif
                                                         <a href="{{ route('password.request') }}"
-                                                            class="text-reset fs-12 fw-400 text-gray-dark hov-text-primary"><u>{{ translate('Forgot password?') }}</u></a>
+                                                            class="text-reset fs-15 fw-400 text-gray-dark hov-text-primary"><u>{{ translate('Forgot password?') }}</u></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,7 +207,7 @@
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
                                                 <button type="submit"
-                                                    class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{ translate('Login') }}</button>
+                                                    class="btn btn-primary btn-block fw-700 fs-15 rounded-2 submit-button">{{ translate('Login') }}</button>
                                             </div>
                                         </form>
 
@@ -142,15 +216,19 @@
                                                 <span>or login with</span>
                                             </div>
                                             <div class="d-flex felx-row justify-content-center mt-3 mb-2">
-                                                <span class="d-flex flex-row p-1" style="margin-right: 10px; border: 1px solid rgb(216, 216, 216);">
-                                                    <i class="fa-brands fa-facebook text-primary fs-20" style="margin-right: 5px;"></i>
+                                                <span class="d-flex flex-row p-1"
+                                                    style="margin-right: 10px; border: 1px solid rgb(216, 216, 216);">
+                                                    <i class="fa-brands fa-facebook text-primary fs-20"
+                                                        style="margin-right: 5px;"></i>
                                                     <span style="margin">Facebook</span>
                                                 </span>
-                                                <span class="d-flex flex-row p-1" style="margin-right: 10px; border: 1px solid rgb(216, 216, 216);"> 
-                                                    <i class="fa-brands fa-google text-danger fs-20" style="margin-right: 5px;"></i>
+                                                <span class="d-flex flex-row p-1"
+                                                    style="margin-right: 10px; border: 1px solid rgb(216, 216, 216);">
+                                                    <i class="fa-brands fa-google text-danger fs-20"
+                                                        style="margin-right: 5px;"></i>
                                                     <span>Google</span>
                                                 </span>
-                                                
+
                                             </div>
                                         </div>
 
@@ -241,25 +319,118 @@
                     <div class="rounded-3 px-5" style="background-color: #CFE661">
                         {{-- <img src="{{ uploaded_asset(get_setting('customer_login_page_image')) }}" alt=""
                             class="img-fit h-100"> --}}
-                        <div class="pt-5">
-                            <img src="{{ static_asset('assets/img/Ellipse 716.png') }}" alt=""
-                                class="d-flex align-items-center mx-auto">
-                        </div>
-                        <div class="pt-2 pb-5">
-                            <div class="bg-white py-4 rounded-2 custom-box position-relative">
-                                <span class="d-flex flex-column">
-                                    <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
-                                    <span class="opacity-80 fs-17 text-center">VP Marketing, Ross Video</span>
-                                </span>
-                                <p class="opacity-80 pt-3 px-3 justify-content">The Tangible Words team have been on our
-                                    radar for some time. However
-                                    we had not had occasion to use their comprehensive services until October of last year.
-                                    We engaged Tangible Words on a 3-month contract to help us add weight to our lead
-                                    generation engine, initially centred around our Ross Live Season 2 Campaign. Thorough
-                                    this period, we found TW to be extremely knowledgeable.</p>
+
+
+                        <div class="slideshow-container">
+
+                            <div class="mySlides fade">
+                                <div class="pt-5">
+                                    <img src="{{ static_asset('assets/img/Ellipse 716.png') }}" alt=""
+                                        class="d-flex align-items-center mx-auto img-circle"
+                                        style="width: 116px; height: 116px; margin-top: -25px !important; margin-left: 5px;">
+                                </div>
+                                <div class="pt-2 pb-5">
+                                    <div style="position: absolute; z-index: 1;">
+                                        <img src="{{ static_asset('assets/img/first cotation 2.png') }}" alt="">
+                                    </div>
+                                    <div class="bg-white py-4 rounded-2 custom-box position-relative">
+                                        <span class="d-flex flex-column">
+                                            <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
+                                            <span class="opacity-80 fs-17 text-center">VP Marketing, Ross Video</span>
+                                        </span>
+                                        <p class="opacity-80 pt-3 px-3 justify-content">The Tangible Words team have been
+                                            on our
+                                            radar for some time. However
+                                            we had not had occasion to use their comprehensive services until October of
+                                            last year.
+                                            We engaged Tangible Words on a 3-month contract to help us add weight to our
+                                            lead
+                                            generation engine, initially centred around our Ross Live Season 2 Campaign.
+                                            Thorough
+                                            this period, we found TW to be extremely knowledgeable.</p>
+                                    </div>
+                                    <div
+                                        style="position: absolute; z-index: 1; right: 0; margin-top: -25px !important; margin-right: 5px;">
+                                        <img src="{{ static_asset('assets/img/first cotation 1.png') }}" alt="">
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="mySlides fade">
+                                <div class="pt-5">
+                                    <img src="{{ static_asset('assets/img/board-of-directory-1.png') }}" alt=""
+                                        class="d-flex align-items-center mx-auto" style="width: 116px; height: 116px;">
+                                </div>
+                                <div class="pt-2 pb-5">
+                                    <div style="position: absolute; z-index: 1;">
+                                        <img src="{{ static_asset('assets/img/first cotation 2.png') }}" alt="">
+                                    </div>
+                                    <div class="bg-white py-4 rounded-2 custom-box position-relative">
+                                        <span class="d-flex flex-column">
+                                            <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
+                                            <span class="opacity-80 fs-17 text-center">VP Marketing, Ross Video</span>
+                                        </span>
+                                        <p class="opacity-80 pt-3 px-3 justify-content">The Tangible Words team have been
+                                            on our
+                                            radar for some time. However
+                                            we had not had occasion to use their comprehensive services until October of
+                                            last year.
+                                            We engaged Tangible Words on a 3-month contract to help us add weight to our
+                                            lead
+                                            generation engine, initially centred around our Ross Live Season 2 Campaign.
+                                            Thorough
+                                            this period, we found TW to be extremely knowledgeable.</p>
+                                    </div>
+                                    <div
+                                        style="position: absolute; z-index: 1; right: 0; margin-top: -25px !important; margin-right: 5px;">
+                                        <img src="{{ static_asset('assets/img/first cotation 1.png') }}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mySlides fade">
+                                <div class="pt-5">
+                                    <img src="{{ static_asset('assets/img/Ellipse 716.png') }}" alt=""
+                                        class="d-flex align-items-center mx-auto" style="width: 116px; height: 116px;">
+                                </div>
+                                <div class="pt-2 pb-5">
+                                    <div style="position: absolute; z-index: 1;">
+                                        <img src="{{ static_asset('assets/img/first cotation 2.png') }}" alt="">
+                                    </div>
+                                    <div class="bg-white py-4 rounded-2 custom-box position-relative">
+                                        <span class="d-flex flex-column">
+                                            <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
+                                            <span class="opacity-80 fs-17 text-center">VP Marketing, Ross Video</span>
+                                        </span>
+                                        <p class="opacity-80 pt-3 px-3 justify-content">The Tangible Words team have been
+                                            on our
+                                            radar for some time. However
+                                            we had not had occasion to use their comprehensive services until October of
+                                            last year.
+                                            We engaged Tangible Words on a 3-month contract to help us add weight to our
+                                            lead
+                                            generation engine, initially centred around our Ross Live Season 2 Campaign.
+                                            Thorough
+                                            this period, we found TW to be extremely knowledgeable.</p>
+                                    </div>
+                                    <div
+                                        style="position: absolute; z-index: 1; right: 0; margin-top: -25px !important; margin-right: 5px;">
+                                        <img src="{{ static_asset('assets/img/first cotation 1.png') }}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div style="text-align:center">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </section>
@@ -271,6 +442,29 @@
         function autoFillCustomer() {
             $('#email').val('customer@example.com');
             $('#password').val('123456');
+        }
+
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
         }
     </script>
 @endsection

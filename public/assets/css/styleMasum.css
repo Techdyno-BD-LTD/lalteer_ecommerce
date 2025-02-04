@@ -61,3 +61,16 @@
   transform: translateX(-50%);
   z-index: -1;
 }
+
+
+
+
+/* login */
+.img-circle {
+  width: 150px;
+  /* Adjust as per your requirement */
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Ensures the image doesn't stretch */
+}
