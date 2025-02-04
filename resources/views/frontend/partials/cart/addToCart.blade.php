@@ -47,7 +47,7 @@
                                     <div class="col-12">
                                         <div class="aiz-radio-inline">
                                             @foreach ($choice->values as $key => $value)
-                                                <div class="my_cart mb-2">
+                                                <div class="my_cart mb-4">
                                                     <div class="product-name">
                                                         <!-- Display the product name here -->
                                                         <h5 class="text-dark">{{ $product->name }} (

@@ -3,8 +3,8 @@
      $flash_deal = get_featured_flash_deal();
  @endphp
  @if ($flash_deal != null)
-     <section class="mb-2 mb-md-3 mt-2 mt-md-3" id="flash_deal">
-         <div class="container">
+     <section class="mb-2 mb-md-3 mt-2 mt-md-3 p-3" id="flash_deal">
+         <div class="">
              <!-- Top Section -->
              <div class="d-flex flex-wrap mb-2 mb-md-3 align-items-baseline justify-content-between">
                  <!-- Title -->

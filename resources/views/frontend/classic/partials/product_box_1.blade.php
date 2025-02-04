@@ -2,7 +2,7 @@
     $cart_added = [];
 @endphp
 <div class="aiz-card-box h-auto bg-white py-3 hov-scale-img">
-    <div class="position-relative img-fit overflow-hidden">
+    <div class="position-relative img-fit overflow-hidden box_padding" >
         @php
             $product_url = route('product', $product->slug);
             if ($product->auction_product == 1) {
@@ -101,7 +101,7 @@
                             style="color: #f0bc00;"></i>({{ $product->rating }})</span>
                 </div>
                 <div class="buy_now d-flex justify-content-center">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn btn-primary" onclick="showAddToCartModal({{ $product->id }})">Buy Now</button>
                 </div>
             </div>
         </div>

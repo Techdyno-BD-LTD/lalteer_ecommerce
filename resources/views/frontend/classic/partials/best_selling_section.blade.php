@@ -3,7 +3,7 @@
 @endphp
 @if (get_setting('best_selling') == 1 && count($best_selling_products) > 0)
     <section class="mb-2 mb-md-3 mt-2 mt-md-3">
-        <div class="container">
+        <div class="">
             <!-- Top Section -->
             <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
                 <!-- Title -->
