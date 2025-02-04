@@ -45,6 +45,17 @@
                 @endif
             </div>
         </div>
+        <div id="collapseDeliveryInfo" class="" aria-labelledby="headingDeliveryInfo"
+            data-parent="#accordioncCheckoutInfo">
+            <div class="card-body" id="delivery_info">
+                @include('frontend.partials.cart.delivery_info', [
+                    'carts' => $carts,
+                    'carrier_list' => $carrier_list ?? '',
+                    'shipping_info' => $shipping_info ?? '',
+                ])
+            </div>
+        </div>
+
         <div class="card-body pt-2">
 
             <div class="row gutters-5">
@@ -178,6 +189,34 @@
                 </div>
             @endif
 
+        </div>
+
+        <div id="collapsePaymentInfo" class="collapse show" aria-labelledby="headingPaymentInfo"
+            data-parent="#accordioncCheckoutInfo">
+            <div class="card-body" id="payment_info">
+                @include('frontend.partials.cart.payment_info', [
+                    'carts' => $carts,
+                    'total' => $total,
+                ])
+
+
+
+                <div class="row align-items-center pt-3 mb-4">
+                    <!-- Return to shop -->
+                    <div class="col-6">
+                        <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0">
+                            <i class="las la-arrow-left fs-16"></i>
+                            {{ translate('Return to shop') }}
+                        </a>
+                    </div>
+                    <!-- Complete Ordert -->
+                    <div class="col-6 text-right">
+                        <button type="button" onclick="submitOrder(this)" id="submitOrderBtn"
+                            class="btn btn-primary fs-14 fw-700 rounded-0 px-4">{{ translate('Complete Order') }}</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
