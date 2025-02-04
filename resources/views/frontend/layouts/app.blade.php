@@ -115,7 +115,7 @@
             --gray-dark: #8d8d8d;
             --secondary: #919199;
             --soft-secondary: rgba(145, 145, 153, 0.15);
-            --success: #85b567;
+            --success: #367736;
             --soft-success: rgba(133, 181, 103, 0.15);
             --warning: #f3af3d;
             --soft-warning: rgba(243, 175, 61, 0.15);

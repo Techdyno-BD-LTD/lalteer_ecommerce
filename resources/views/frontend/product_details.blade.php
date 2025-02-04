@@ -56,7 +56,7 @@
 @endsection
 
 @section('content')
-    <section style="background-image: url('{{ static_asset('assets/img/Frame 1171277141.jpg') }}'); background-size: cover; background-position: center;">
+    <section style="background-image: url('{{ static_asset('assets/img/p_details_bg.jpg') }}'); background-size: cover; background-position: center;">
         <section class="mb-1 pt-3">
             <div class="product-details-bredcrumb" style="position: relative; text-align: center;">
                 <img src="{{ static_asset('assets/img/Frame 1171276523.png') }}" alt="" style="width: 100%; height: 200px;">
@@ -69,7 +69,7 @@
                 <div class="py-3">
                     <div class="row">
                         <!-- Product Image Gallery -->
-                        <div class="col-xl-5 col-lg-6 mb-4 bg-white border border-success rounded-lg">
+                        <div class="col-xl-5 col-lg-6 mb-4 bg-white border rounded-lg">
                             @include('frontend.product_details.image_gallery')
                         </div>
     
@@ -129,8 +129,9 @@
                         
                             <!-- Tab Content -->
                             <div class="tab-content" id="pills-tabContent">
+                                
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                    @include('frontend.product_details.frequently_bought_products')
+                                  @include('frontend.product_details.specification')
                                 </div>
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                     @include('frontend.product_details.description')

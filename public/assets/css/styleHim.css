@@ -288,6 +288,38 @@ padding-bottom: 16px;
 .box_padding{
  padding: 25px;
 }
+.text_title{
+    color: #000;
+    font-family: Quicksand;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+
+}
+.checkout_custom_input{
+    display: flex;
+    width: 100%;
+    height: 78px;
+    padding: 29px 12px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px !important;
+    border: 1px solid var(--foundation-grey-light-hover, #E4E4E4);
+    background: var(--Foundation-White-Normal, #FFF);
+}
+.bootstrap-select.checkout_custom_input > .dropdown-toggle {
+    display: flex !important;
+    width: 100% !important;
+    height: 78px !important;
+    padding: 29px 12px !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--foundation-grey-light-hover, #E4E4E4) !important;
+    background: var(--Foundation-White-Normal, #FFF) !important;
+}
+
+
 @media (min-width: 768px) {
     .grid-template-columns-4 {
         grid-template-columns: repeat(4, 1fr);

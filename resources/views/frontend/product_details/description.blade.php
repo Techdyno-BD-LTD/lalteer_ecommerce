@@ -37,13 +37,13 @@
                     @elseif ($detailedProduct->video_provider == 'vimeo' && isset(explode('vimeo.com/', $detailedProduct->video_link)[1]))
                         <iframe
                             src="https://player.vimeo.com/video/{{ explode('vimeo.com/', $detailedProduct->video_link)[1] }}"
-                            width="500" height="281" frameborder="0" webkitallowfullscreen
-                            mozallowfullscreen allowfullscreen></iframe>
+                            width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                            allowfullscreen></iframe>
                     @endif
                 </div>
             </div>
         </div>
-        
+
         <!-- Download -->
         <div class="tab-pane fade" id="tab_default_3">
             <div class="py-5 text-center ">

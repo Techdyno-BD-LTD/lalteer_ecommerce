@@ -239,153 +239,12 @@
                 </tbody>
             </table>
         @else
-            <!-- Without Wholesale -->
-            @if (home_price($detailedProduct) != home_discounted_price($detailedProduct))
-                <div class="row no-gutters mb-3">
-                    {{-- <div class="col-sm-2">
-                        <div class="text-secondary fs-14 fw-400">{{ translate('Price') }}</div>
-                    </div> --}}
-                    <div class="col-sm-10">
-                        <div class="d-flex align-items-center">
-                            <!-- Discount Price -->
-                            <strong class="fw-700 opacity-60" style="font-size: 30px;">
-                                {{ home_discounted_price($detailedProduct) }}
-                            </strong>
-                            <!-- Home Price -->
-                            <del class="fs-14 opacity-60 ml-2">
-                                {{ home_price($detailedProduct) }}
-                            </del>
-                            <!-- Unit -->
-                            @if ($detailedProduct->unit != null)
-                                <span class="opacity-70 ml-1">/{{ $detailedProduct->getTranslation('unit') }}</span>
-                            @endif
-                            <!-- Discount percentage -->
-                            @if (discount_in_percentage($detailedProduct) > 0)
-                                <span class="bg-primary ml-2 fs-11 fw-700 text-white w-35px text-center p-1"
-                                    style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($detailedProduct) }}%</span>
-                            @endif
-                            <!-- Club Point -->
-                            @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
-                                <div class="ml-2 bg-secondary-base d-flex justify-content-center align-items-center px-3 py-1"
-                                    style="width: fit-content;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                        viewBox="0 0 12 12">
-                                        <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
-                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6" cy="6"
-                                                r="6" transform="translate(973 633)" fill="#fff" />
-                                            <g id="Group_23920" data-name="Group 23920" transform="translate(973 633)">
-                                                <path id="Path_28698" data-name="Path 28698"
-                                                    d="M7.667,3H4.333L3,5,6,9,9,5Z" transform="translate(0 0)"
-                                                    fill="#f3af3d" />
-                                                <path id="Path_28699" data-name="Path 28699"
-                                                    d="M5.33,3h-1L3,5,6,9,4.331,5Z" transform="translate(0 0)"
-                                                    fill="#f3af3d" opacity="0.5" />
-                                                <path id="Path_28700" data-name="Path 28700"
-                                                    d="M12.666,3h1L15,5,12,9l1.664-4Z" transform="translate(-5.995 0)"
-                                                    fill="#f3af3d" />
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <small class="fs-11 fw-500 text-white ml-2">{{ translate('Club Point') }}:
-                                        {{ $detailedProduct->earn_point }}</small>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            @else
-                <div class="row no-gutters mb-3">
-                    {{-- <div class="col-sm-2">
-                        <div class="text-secondary fs-14 fw-400">{{ translate('Price') }}</div>
-                    </div> --}}
-                    <div class="col-sm-10">
-                        <div class="d-flex align-items-center">
-                            <!-- Discount Price -->
-                            <strong class="fw-700 opacity-60" style="font-size: 30px;">
-                                {{ home_discounted_price($detailedProduct) }}
-                            </strong>
-                            <!-- Unit -->
-                            @if ($detailedProduct->unit != null)
-                                <span class="opacity-70">/{{ $detailedProduct->getTranslation('unit') }}</span>
-                            @endif
-                            <!-- Club Point -->
-                            @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
-                                <div class="ml-2 bg-secondary-base d-flex justify-content-center align-items-center px-3 py-1"
-                                    style="width: fit-content;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                        viewBox="0 0 12 12">
-                                        <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
-                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6"
-                                                cy="6" r="6" transform="translate(973 633)" fill="#fff" />
-                                            <g id="Group_23920" data-name="Group 23920"
-                                                transform="translate(973 633)">
-                                                <path id="Path_28698" data-name="Path 28698"
-                                                    d="M7.667,3H4.333L3,5,6,9,9,5Z" transform="translate(0 0)"
-                                                    fill="#f3af3d" />
-                                                <path id="Path_28699" data-name="Path 28699"
-                                                    d="M5.33,3h-1L3,5,6,9,4.331,5Z" transform="translate(0 0)"
-                                                    fill="#f3af3d" opacity="0.5" />
-                                                <path id="Path_28700" data-name="Path 28700"
-                                                    d="M12.666,3h1L15,5,12,9l1.664-4Z" transform="translate(-5.995 0)"
-                                                    fill="#f3af3d" />
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <small class="fs-11 fw-500 text-white ml-2">{{ translate('Club Point') }}:
-                                        {{ $detailedProduct->earn_point }}</small>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-
-                </div>
-            @endif
+           
         @endif
     @endif
 
     <div>
-        <div class="text-success mb-3">
-            <span>Size: </span>
-            <span>100gm</span>
-        </div>
-        {{-- <div class="mb-4">
-            <p class="text-success">Variants</p>
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="row mb-2">
-                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
-                            <p class="text-success text-bold fs-20">50 ml</p>
-                            <p class="" style="margin-top: -30px;">৳ 20</p>
-                        </div>
-                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
-                            <p class="text-success text-bold fs-20">50 ml</p>
-                            <p class="" style="margin-top: -30px;">৳ 20</p>
-                        </div>
-                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
-                            <p class="text-success text-bold fs-20">50 ml</p>
-                            <p class="" style="margin-top: -30px;">৳ 20</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
-                            <p class="text-success text-bold fs-20">50 ml</p>
-                            <p class="" style="margin-top: -30px;">৳ 20</p>
-                        </div>
-                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
-                            <p class="text-success text-bold fs-20">50 ml</p>
-                            <p class="" style="margin-top: -30px;">৳ 20</p>
-                        </div>
-                        <div class="col-md-3 bg-white rounded-2 variants-sm-col">
-                            <p class="text-success text-bold fs-20">50 ml</p>
-                            <p class="" style="margin-top: -30px;">৳ 20</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
 
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     @if ($detailedProduct->auction_product != 1)
@@ -397,13 +256,14 @@
                 <!-- Choice Options -->
                 @if ($detailedProduct->choice_options != null)
                     @foreach (json_decode($detailedProduct->choice_options) as $key => $choice)
-                        <div class="row no-gutters mb-3">
+                        <div class="row no-gutters mb-1">
                             <div class="col-sm-12">
-                                <div class="text-success fs-14 mt-2 mb-3">
-                                    {{ get_single_attribute_name($choice->attribute_id) }}
+                                <div class="text-success fs-14 mt-2 mb-2">
+                                    {{-- {{ get_single_attribute_name($choice->attribute_id) }} --}}
+                                    Variants
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 mb-2">
                                 <div class="aiz-radio-inline">
                                     @foreach ($choice->values as $key => $value)
                                         <label class="aiz-megabox pl-0 mr-2 mb-0">
@@ -412,13 +272,13 @@
                                                 @if ($key == 0) checked @endif>
                                             <span
                                                 class="bg-white rounded-2 d-flex align-items-center justify-content-center py-3 px-3 variants-sm-col-price">
-                                                <span class="text-success text-bold fs-20">
+                                                <span class="text-primary text-bold fs-22">
                                                     {{ $value }}
                                                 </span>
-                                                <span class="fs-12 opacity-80" style="margin-top: -30px;">
+                                                <sup class="fs-12 opacity-80">
                                                     {{ home_discounted_price_cart($detailedProduct, $value) }}
                                                     <!-- Pass the variant value here -->
-                                                </span>
+                                                </sup>
                                             </span>
                                         </label>
                                     @endforeach
@@ -461,7 +321,8 @@
                     </div> --}}
                     <div class="col-sm-12">
                         <div class="product-quantity d-flex align-items-center">
-                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3 bg-white p-2 rounded-2" style="width: 130px;">
+                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3 bg-white p-2 rounded-2"
+                                style="width: 130px;">
                                 <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
                                     data-type="minus" data-field="quantity" disabled="">
                                     <i class="las la-minus"></i>
@@ -541,7 +402,8 @@
         <div>
             <div>
                 <span>
-                    <img src="{{ static_asset('assets/img/Component 7.jpg') }}" alt="" class="img-fluid">
+                    <img src="{{ static_asset('assets/img/product-details/Component 7.jpg') }}" alt=""
+                        class="img-fluid">
                 </span>
                 <span class="text-primary" style="margin-left: 10px;">
                     Exclusive Shipping
@@ -549,7 +411,8 @@
             </div>
             <div class="mt-2">
                 <span>
-                    <img src="{{ static_asset('assets/img/Component 11.png') }}" alt="" class="img-fluid">
+                    <img src="{{ static_asset('assets/img/product-details/Component 11.png') }}" alt=""
+                        class="img-fluid">
                 </span>
                 <span class="text-primary" style="margin-left: 10px;">
                     Payment Method
@@ -557,7 +420,7 @@
             </div>
             <div class="mt-2">
                 <span>
-                    <img src="{{ static_asset('assets/img/Component 11 (1).png') }}" alt=""
+                    <img src="{{ static_asset('assets/img/product-details/Component 11 (1).png') }}" alt=""
                         class="img-fluid">
                 </span>
                 <span class="text-primary" style="margin-left: 10px;">
@@ -566,7 +429,8 @@
             </div>
             <div class="mt-2">
                 <span>
-                    <img src="{{ static_asset('assets/img/help center.png') }}" alt="" class="img-fluid">
+                    <img src="{{ static_asset('assets/img/product-details/help.png') }}" alt=""
+                        class="img-fluid">
                 </span>
                 <span class="text-primary" style="margin-left: 10px;">
                     Help Center

@@ -9,9 +9,10 @@ class ProductTranslation extends Model
 {
   use PreventDemoModeChanges;
 
-    protected $fillable = ['product_id', 'name', 'unit', 'description', 'lang'];
+  protected $fillable = ['product_id', 'name', 'unit', 'description', 'lang', 'specification'];
 
-    public function product(){
-      return $this->belongsTo(Product::class);
-    }
+  public function product()
+  {
+    return $this->belongsTo(Product::class);
+  }
 }
