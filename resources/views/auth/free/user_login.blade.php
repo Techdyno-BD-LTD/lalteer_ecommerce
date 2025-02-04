@@ -246,7 +246,7 @@
                                 class="d-flex align-items-center mx-auto">
                         </div>
                         <div class="pt-2 pb-5">
-                            <div class="bg-white py-4 rounded-2 custom-box">
+                            <div class="bg-white py-4 rounded-2 custom-box position-relative">
                                 <span class="d-flex flex-column">
                                     <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
                                     <span class="opacity-80 fs-17 text-center">VP Marketing, Ross Video</span>
