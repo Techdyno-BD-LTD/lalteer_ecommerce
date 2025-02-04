@@ -495,7 +495,7 @@ if (!function_exists('carts_coupon_discount')) {
                             $product = Product::find($cartItem['product_id']);
                             $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
                             $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
-                            $shipping += $cartItem['shipping_cost'];
+                            $shipping += session('shipping_cost', 0) / count($carts);
                         }
                         $sum = $subtotal + $tax + $shipping;
                         if ($sum >= $coupon_details->min_buy) {
