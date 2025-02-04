@@ -2,7 +2,7 @@
     @php
         $photos = $detailedProduct->photos != null ? explode(',', $detailedProduct->photos) : [];
     @endphp
-    
+
     <!-- Gallery Images -->
     <div class="col-12 mt-4">
         <div class="aiz-carousel product-gallery arrow-inactive-transparent arrow-lg-none"
@@ -32,14 +32,15 @@
     </div>
     <!-- Thumbnail Images -->
     <div class="col-12 mt-3 d-none d-lg-block">
-        <div class="aiz-carousel half-outside-arrow product-gallery-thumb" data-items='7' data-nav-for='.product-gallery'
-            data-focus-select='true' data-arrows='true' data-vertical='false' data-auto-height='true'>
+        <div class="aiz-carousel half-outside-arrow product-gallery-thumb" data-items='7'
+            data-nav-for='.product-gallery' data-focus-select='true' data-arrows='true' data-vertical='false'
+            data-auto-height='true'>
 
             @if ($detailedProduct->digital == 0)
                 @foreach ($detailedProduct->stocks as $key => $stock)
                     @if ($stock->image != null)
                         <div class="carousel-box c-pointer rounded-0" data-variation="{{ $stock->variant }}">
-                            <img class="lazyload mw-100 size-60px mx-auto border p-1"
+                            <img class="lazyload mw-100 size-60px mx-auto  p-1"
                                 src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                 data-src="{{ uploaded_asset($stock->image) }}"
                                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
@@ -50,7 +51,7 @@
 
             @foreach ($photos as $key => $photo)
                 <div class="carousel-box c-pointer rounded-0">
-                    <img class="lazyload mw-100 size-60px mx-auto border p-1"
+                    <img class="lazyload mw-100 size-60px mx-auto  p-1"
                         src="{{ static_asset('assets/img/placeholder.jpg') }}" data-src="{{ uploaded_asset($photo) }}"
                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                 </div>

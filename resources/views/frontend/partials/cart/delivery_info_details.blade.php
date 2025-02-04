@@ -2,7 +2,7 @@
     @php
         $physical = false;
         $col_val = 'col-12';
-        foreach ($products as $key => $cartItem){
+        foreach ($products as $key => $cartItem) {
             $product = get_single_product($cartItem);
             if ($product->digital == 0) {
                 $physical = true;
@@ -20,15 +20,15 @@
                 <li class="list-group-item pl-0 py-3 border-0">
                     <div class="d-flex align-items-center">
                         <span class="mr-2 mr-md-3">
-                            <img src="{{ get_image($product->thumbnail) }}"
-                                class="img-fit size-60px"
-                                alt="{{  $product->getTranslation('name')  }}"
+                            <img src="{{ get_image($product->thumbnail) }}" class="img-fit size-60px"
+                                alt="{{ $product->getTranslation('name') }}"
                                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                         </span>
                         <span class="fs-14 fw-400 text-dark">
                             <span class="text-truncate-2">{{ $product->getTranslation('name') }}</span>
                             @if ($product_variation[$key] != '')
-                                <span class="fs-12 text-secondary">{{ translate('Variation') }}: {{ $product_variation[$key] }}</span>
+                                <span class="fs-12 text-secondary">{{ translate('Variation') }}:
+                                    {{ $product_variation[$key] }}</span>
                             @endif
                         </span>
                     </div>
@@ -37,7 +37,7 @@
         </ul>
     </div>
 
-    @if ($physical)
+    {{-- @if ($physical)
         <!-- Choose Delivery Type -->
         <div class="col-md-6 mb-2">
             <h6 class="fs-14 fw-700 mt-3">{{ translate('Choose Delivery Type') }}</h6>
@@ -130,14 +130,14 @@
             <!-- Carrier Wise Shipping -->
             @if (get_setting('shipping_type') == 'carrier_wise_shipping')
                 <div class="row pt-3 carrier_id_{{ $owner_id }}">
-                    @foreach($carrier_list as $carrier_key => $carrier)
+                    @foreach ($carrier_list as $carrier_key => $carrier)
                         <div class="col-md-12 mb-2">
                             <label class="aiz-megabox d-block bg-white mb-0">
                                 <input
                                     type="radio"
                                     name="carrier_id_{{ $owner_id }}"
                                     value="{{ $carrier->id }}"
-                                    @if($carrier_key == 0) checked @endif
+                                    @if ($carrier_key == 0) checked @endif
                                     onchange="updateDeliveryInfo('carrier', {{ $carrier->id }}, {{ $owner_id }})"
                                 >
                                 <span class="d-flex flex-wrap p-3 aiz-megabox-elem rounded-0">
@@ -155,5 +155,5 @@
                 </div>
             @endif
         </div>
-    @endif
+    @endif --}}
 </div>

@@ -142,11 +142,11 @@
                                                 <span>or login with</span>
                                             </div>
                                             <div class="d-flex felx-row justify-content-center mt-3 mb-2">
-                                                <span class="d-flex flex-row gap-2" style="margin-right: 10px;">
+                                                <span class="d-flex flex-row p-1" style="margin-right: 10px; border: 1px solid rgb(216, 216, 216);">
                                                     <i class="fa-brands fa-facebook text-primary fs-20" style="margin-right: 5px;"></i>
                                                     <span style="margin">Facebook</span>
                                                 </span>
-                                                <span class="d-flex flex-row gap-2">
+                                                <span class="d-flex flex-row p-1" style="margin-right: 10px; border: 1px solid rgb(216, 216, 216);"> 
                                                     <i class="fa-brands fa-google text-danger fs-20" style="margin-right: 5px;"></i>
                                                     <span>Google</span>
                                                 </span>
