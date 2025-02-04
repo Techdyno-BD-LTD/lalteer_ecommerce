@@ -627,7 +627,7 @@
         }
         
         $('#option-choice-form input').on('change', function(){
-            checked = true;
+            // checked = true;
             getVariantPrice();
         });
 

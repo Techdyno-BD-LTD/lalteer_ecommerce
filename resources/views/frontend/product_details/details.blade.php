@@ -3,7 +3,7 @@
     <!-- Product Name -->
     <h1 class="mb-2 mt-2 fs-1 fw-700 text-success">
         {{ $detailedProduct->getTranslation('name') }}
-    </h1>   
+    </h1>
 
     <div class="row align-items-center mb-3">
         <!-- Review -->
@@ -35,7 +35,7 @@
         @endif
     </div>
     {{-- <div class="row align-items-center">
-        @if(get_setting('product_query_activation') == 1)
+        @if (get_setting('product_query_activation') == 1)
             <!-- Ask about this product -->
             <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mb-3">
                 <a href="javascript:void();" onclick="goToView('product_query')" class="text-primary fs-14 fw-600 d-flex">
@@ -94,10 +94,9 @@
             <span class="text-secondary fs-14 fw-400 mr-4 w-80px">{{ translate('Warranty') }}</span><br>
             <img src="{{ uploaded_asset($detailedProduct->warranty->logo) }}" height="40">
             <span class="border border-secondary-base btn fs-12 ml-3 px-3 py-1 rounded-1 text-secondary">
-                {{ $detailedProduct->warranty->getTranslation('text')}}
-                @if($detailedProduct->warranty_note_id != null)
-                    <span href="javascript:void(1);" 
-                        data-toggle="modal" data-target="#warranty-note-modal"
+                {{ $detailedProduct->warranty->getTranslation('text') }}
+                @if ($detailedProduct->warranty_note_id != null)
+                    <span href="javascript:void(1);" data-toggle="modal" data-target="#warranty-note-modal"
                         class="border-bottom border-bottom-4 ml-2 text-secondary-base">
                         {{ translate('View Details') }}
                     </span>
@@ -150,7 +149,7 @@
             $sizeChartId = ($detailedProduct->main_category && $detailedProduct->main_category->sizeChart) ? $detailedProduct->main_category->sizeChart->id : 0;
             $sizeChartName = ($detailedProduct->main_category && $detailedProduct->main_category->sizeChart) ? $detailedProduct->main_category->sizeChart->name : null;
         @endphp
-        @if($sizeChartId != 0)
+        @if ($sizeChartId != 0)
             <div class=" ml-4">
                 <a href="javascript:void(1);" onclick='showSizeChartDetail({{ $sizeChartId }}, "{{ $sizeChartName }}")' class="animate-underline-primary">{{ translate('Show size guide') }}</a>
             </div>
@@ -190,8 +189,7 @@
             </div>
         </div>
 
-        @if (Auth::check() &&
-                Auth::user()->product_bids->where('product_id', $detailedProduct->id)->first() != null)
+        @if (Auth::check() && Auth::user()->product_bids->where('product_id', $detailedProduct->id)->first() != null)
             <div class="row no-gutters mb-3">
                 <div class="col-sm-2">
                     <div class="text-secondary fs-14 fw-400 mt-1">{{ translate('My Bidded Amount') }}</div>
@@ -273,11 +271,9 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                         viewBox="0 0 12 12">
                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
-                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6"
-                                                cy="6" r="6" transform="translate(973 633)"
-                                                fill="#fff" />
-                                            <g id="Group_23920" data-name="Group 23920"
-                                                transform="translate(973 633)">
+                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6" cy="6"
+                                                r="6" transform="translate(973 633)" fill="#fff" />
+                                            <g id="Group_23920" data-name="Group 23920" transform="translate(973 633)">
                                                 <path id="Path_28698" data-name="Path 28698"
                                                     d="M7.667,3H4.333L3,5,6,9,9,5Z" transform="translate(0 0)"
                                                     fill="#f3af3d" />
@@ -294,8 +290,6 @@
                                         {{ $detailedProduct->earn_point }}</small>
                                 </div>
                             @endif
-                            <i class="fa-solid fa-percent"></i>
-                            <span class="text-danger fs-20">10 %</span>
                         </div>
                     </div>
                 </div>
@@ -322,8 +316,7 @@
                                         viewBox="0 0 12 12">
                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
                                             <circle id="Ellipse_39" data-name="Ellipse 39" cx="6"
-                                                cy="6" r="6" transform="translate(973 633)"
-                                                fill="#fff" />
+                                                cy="6" r="6" transform="translate(973 633)" fill="#fff" />
                                             <g id="Group_23920" data-name="Group 23920"
                                                 transform="translate(973 633)">
                                                 <path id="Path_28698" data-name="Path 28698"
@@ -342,13 +335,9 @@
                                         {{ $detailedProduct->earn_point }}</small>
                                 </div>
                             @endif
-                            <div style="margin-left: 10px;">
-                                <i class="fa-solid fa-percent bg-success rounded-pill text-white"></i>
-                                <span class="text-danger fs-20">10 %</span>
-                            </div>
                         </div>
                     </div>
-                        
+
                 </div>
             @endif
         @endif
@@ -359,7 +348,7 @@
             <span>Size: </span>
             <span>100gm</span>
         </div>
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <p class="text-success">Variants</p>
             <div class="row">
                 <div class="col-md-7">
@@ -396,7 +385,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     @if ($detailedProduct->auction_product != 1)
@@ -409,12 +398,12 @@
                 @if ($detailedProduct->choice_options != null)
                     @foreach (json_decode($detailedProduct->choice_options) as $key => $choice)
                         <div class="row no-gutters mb-3">
-                            <div class="col-sm-2">
-                                <div class="text-secondary fs-14 fw-400 mt-2 ">
+                            <div class="col-sm-12">
+                                <div class="text-success fs-14 mt-2 mb-3">
                                     {{ get_single_attribute_name($choice->attribute_id) }}
                                 </div>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <div class="aiz-radio-inline">
                                     @foreach ($choice->values as $key => $value)
                                         <label class="aiz-megabox pl-0 mr-2 mb-0">
@@ -422,8 +411,14 @@
                                                 value="{{ $value }}"
                                                 @if ($key == 0) checked @endif>
                                             <span
-                                                class="aiz-megabox-elem rounded-0 d-flex align-items-center justify-content-center py-1 px-3">
-                                                {{ $value }}
+                                                class="bg-white rounded-2 d-flex align-items-center justify-content-center py-3 px-3 variants-sm-col-price">
+                                                <span class="text-success text-bold fs-20">
+                                                    {{ $value }}
+                                                </span>
+                                                <span class="fs-12 opacity-80" style="margin-top: -30px;">
+                                                    {{ home_discounted_price_cart($detailedProduct, $value) }}
+                                                    <!-- Pass the variant value here -->
+                                                </span>
                                             </span>
                                         </label>
                                     @endforeach
@@ -466,7 +461,7 @@
                     </div> --}}
                     <div class="col-sm-12">
                         <div class="product-quantity d-flex align-items-center">
-                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
+                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3 bg-white p-2 rounded-2" style="width: 130px;">
                                 <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
                                     data-type="minus" data-field="quantity" disabled="">
                                     <i class="las la-minus"></i>
@@ -533,8 +528,7 @@
                     <button type="button" class="btn btn-primary buy-now  fw-600 min-w-150px rounded-0"
                         onclick="bid_modal()">
                         <i class="las la-gavel"></i>
-                        @if (Auth::check() &&
-                                Auth::user()->product_bids->where('product_id', $detailedProduct->id)->first() != null)
+                        @if (Auth::check() && Auth::user()->product_bids->where('product_id', $detailedProduct->id)->first() != null)
                             {{ translate('Change Bid') }}
                         @else
                             {{ translate('Place Bid') }}
@@ -544,47 +538,50 @@
             </div>
         @endif
     @else
-        
-    <div>
         <div>
-            <span>
-                <img src="{{ static_asset('assets/img/Component 7.jpg') }}" alt="" class="img-fluid">
-            </span>
-            <span class="text-primary" style="margin-left: 10px;">
-                Exclusive Shipping
-            </span>
+            <div>
+                <span>
+                    <img src="{{ static_asset('assets/img/Component 7.jpg') }}" alt="" class="img-fluid">
+                </span>
+                <span class="text-primary" style="margin-left: 10px;">
+                    Exclusive Shipping
+                </span>
+            </div>
+            <div class="mt-2">
+                <span>
+                    <img src="{{ static_asset('assets/img/Component 11.png') }}" alt="" class="img-fluid">
+                </span>
+                <span class="text-primary" style="margin-left: 10px;">
+                    Payment Method
+                </span>
+            </div>
+            <div class="mt-2">
+                <span>
+                    <img src="{{ static_asset('assets/img/Component 11 (1).png') }}" alt=""
+                        class="img-fluid">
+                </span>
+                <span class="text-primary" style="margin-left: 10px;">
+                    7- Days Returns
+                </span>
+            </div>
+            <div class="mt-2">
+                <span>
+                    <img src="{{ static_asset('assets/img/help center.png') }}" alt="" class="img-fluid">
+                </span>
+                <span class="text-primary" style="margin-left: 10px;">
+                    Help Center
+                </span>
+            </div>
         </div>
-        <div class="mt-2">
-            <span>
-                <img src="{{ static_asset('assets/img/Component 11.png') }}" alt="" class="img-fluid">
-            </span>
-            <span class="text-primary" style="margin-left: 10px;">
-                Payment Method
-            </span>
-        </div>
-        <div class="mt-2">
-            <span>
-                <img src="{{ static_asset('assets/img/Component 11 (1).png') }}" alt="" class="img-fluid">
-            </span>
-            <span class="text-primary" style="margin-left: 10px;">
-                7- Days Returns
-            </span>
-        </div>
-        <div class="mt-2">
-            <span>
-                <img src="{{ static_asset('assets/img/help center.png') }}" alt="" class="img-fluid">
-            </span>
-            <span class="text-primary" style="margin-left: 10px;">
-                Help Center
-            </span>
-        </div>
-    </div>
 
         <!-- Add to cart & Buy now Buttons -->
         <div class="mt-3">
             @if ($detailedProduct->digital == 0)
-                @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
-                    (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
+                @if (
+                    (get_setting('product_external_link_for_seller') == 1 &&
+                        $detailedProduct->added_by == 'seller' &&
+                        $detailedProduct->external_link != null) ||
+                        ($detailedProduct->added_by != 'seller' && $detailedProduct->external_link != null))
                     <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
                         href="{{ $detailedProduct->external_link }}">
                         <i class="la la-share"></i> {{ translate($detailedProduct->external_link_btn) }}
@@ -595,7 +592,8 @@
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                         <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
                     </button>
-                    <button type="button" class="btn btn-danger buy-now fw-600 add-to-cart rounded-2 btn-add-to-cart-size"
+                    <button type="button"
+                        class="btn btn-danger buy-now fw-600 add-to-cart rounded-2 btn-add-to-cart-size"
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                         <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                     </button>
@@ -609,7 +607,8 @@
                     @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                     <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
                 </button>
-                <button type="button" class="btn btn-danger buy-now fw-600 add-to-cart min-w-150px rounded-2 btn-add-to-cart-size"
+                <button type="button"
+                    class="btn btn-danger buy-now fw-600 add-to-cart min-w-150px rounded-2 btn-add-to-cart-size"
                     @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                     <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                 </button>
@@ -631,7 +630,11 @@
                                 Auth::user()->save();
                             }
                             $referral_code = Auth::user()->referral_code;
-                            $referral_code_url = URL::to('/product') . '/' . $detailedProduct->slug . "?product_referral_code=$referral_code";
+                            $referral_code_url =
+                                URL::to('/product') .
+                                '/' .
+                                $detailedProduct->slug .
+                                "?product_referral_code=$referral_code";
                         }
                     @endphp
                     <div>
@@ -661,16 +664,15 @@
                                 <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36">
                             @endif
                         </a>
-                        @if($detailedProduct->refund_note_id != null)
-                            <span href="javascript:void(1);" 
-                                data-toggle="modal" data-target="#refund-note-modal"
+                        @if ($detailedProduct->refund_note_id != null)
+                            <span href="javascript:void(1);" data-toggle="modal" data-target="#refund-note-modal"
                                 class="border-bottom border-bottom-4 ml-2 text-secondary-base">
                                 {{ translate('Refund Note') }}
                             </span>
                         @endif
-                        
-                        <a href="{{ route('returnpolicy') }}" class="text-blue hov-text-primary fs-14 ml-3" target="_blank">{{ translate('View Policy') }}</a>
-                        
+
+                        <a href="{{ route('returnpolicy') }}" class="text-blue hov-text-primary fs-14 ml-3"
+                            target="_blank">{{ translate('View Policy') }}</a>
                     @else
                         <div class="text-dark fs-14 fw-400 mt-2">{{ translate('Not Applicable') }}</div>
                     @endif

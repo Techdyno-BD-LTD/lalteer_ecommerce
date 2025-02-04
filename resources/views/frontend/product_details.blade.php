@@ -8,18 +8,17 @@
 
 @section('meta')
     @php
-        $availability = "out of stock";
+        $availability = 'out of stock';
         $qty = 0;
-        if($detailedProduct->variant_product) {
+        if ($detailedProduct->variant_product) {
             foreach ($detailedProduct->stocks as $key => $stock) {
                 $qty += $stock->qty;
             }
-        }
-        else {
+        } else {
             $qty = optional($detailedProduct->stocks->first())->qty;
         }
-        if($qty > 0){
-            $availability = "in stock";
+        if ($qty > 0) {
+            $availability = 'in stock';
         }
     @endphp
     <!-- Schema.org markup for Google+ -->
@@ -32,7 +31,8 @@
     <meta name="twitter:site" content="@publisher_handle">
     <meta name="twitter:title" content="{{ $detailedProduct->meta_title }}">
     <meta name="twitter:description" content="{{ $detailedProduct->meta_description }}">
-    <meta name="twitter:creator" content="@author_handle">
+    <meta name="twitter:creator"
+        content="@author_handle">
     <meta name="twitter:image" content="{{ uploaded_asset($detailedProduct->meta_img) }}">
     <meta name="twitter:data1" content="{{ single_price($detailedProduct->unit_price) }}">
     <meta name="twitter:label1" content="Price">
@@ -111,17 +111,17 @@
                             <!-- Nav Pills -->
                             <ul class="nav nav-pills mb-3 d-flex flex-row justify-content-between p-2" id="pills-tab" role="tablist" style="background-color: #D9EDC4;">
                                 <li class="nav-item" role="presentation">
-                                    <button class="btn btn-primary border-0 rounded-2 active btn-add-specification-tab" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                    <button class="btn btn-primary border-0 rounded-2 active btn-add-specification-tab" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
                                         Specification
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="btn btn-primary border-0 rounded-2 btn-add-specification-tab" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                                    <button class="btn btn-primary border-0 rounded-2 btn-add-specification-tab" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
                                         Description
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="btn btn-primary border-0 rounded-2 btn-add-specification-tab" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                    <button class="btn btn-primary border-0 rounded-2 btn-add-specification-tab" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
                                         Reviews
                                     </button>
                                 </li>
@@ -129,13 +129,13 @@
                         
                             <!-- Tab Content -->
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                     @include('frontend.product_details.frequently_bought_products')
                                 </div>
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                     @include('frontend.product_details.description')
                                 </div>
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                     @include('frontend.product_details.review_section')
                                 </div>
                             </div>
@@ -219,7 +219,7 @@
     </div>
 
     <!-- Bid Modal -->
-    @if($detailedProduct->auction_product == 1)
+    @if ($detailedProduct->auction_product == 1)
         @php 
             $highest_bid = $detailedProduct->bids->max('amount');
             $min_bid_amount = $highest_bid != null ? $highest_bid+1 : $detailedProduct->starting_bid; 
@@ -228,7 +228,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ translate('Bid For Product') }} <small>({{ translate('Min Bid Amount: ').$min_bid_amount }})</small> </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{ translate('Bid For Product') }} <small>({{ translate('Min Bid Amount: ') . $min_bid_amount }})</small> </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
@@ -238,7 +238,7 @@
                             <input type="hidden" name="product_id" value="{{ $detailedProduct->id }}">
                             <div class="form-group">
                                 <label class="form-label">
-                                    {{translate('Place Bid Price')}}
+                                    {{ translate('Place Bid Price') }}
                                     <span class="text-danger">*</span>
                                 </label>
                                 <div class="form-group">
@@ -276,7 +276,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body c-scrollbar-light">
-                    @if($detailedProduct->warranty_note_id != null)
+                    @if ($detailedProduct->warranty_note_id != null)
                         <p>{{ $detailedProduct->warrantyNote->getTranslation('description') }}</p>
                     @endif
                 </div>
@@ -293,7 +293,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body c-scrollbar-light">
-                    @if($detailedProduct->refund_note_id != null)
+                    @if ($detailedProduct->refund_note_id != null)
                         <p>{{ $detailedProduct->refundNote->getTranslation('description') }}</p>
                     @endif
                 </div>
@@ -393,7 +393,7 @@
             @if (isCustomer() || isSeller())
                 $('#bid_for_detail_product').modal('show');
           	@elseif (isAdmin())
-                AIZ.plugins.notify('warning', '{{ translate("Sorry, Only customers & Sellers can Bid.") }}');
+                AIZ.plugins.notify('warning', '{{ translate('Sorry, Only customers & Sellers can Bid.') }}');
             @else
                 $('#login_modal').modal('show');
             @endif
@@ -413,32 +413,24 @@
                         AIZ.extra.inputRating();
                     });
                 @else
-                    AIZ.plugins.notify('warning', '{{ translate("Sorry, You need to buy this product to give review.") }}');
+                    AIZ.plugins.notify('warning', '{{ translate('Sorry, You need to buy this product to give review.') }}');
                 @endif
             @elseif (Auth::check() && !isCustomer())
-                AIZ.plugins.notify('warning', '{{ translate("Sorry, Only customers can give review.") }}');
+                AIZ.plugins.notify('warning', '{{ translate('Sorry, Only customers can give review.') }}');
             @else
-                $('#login_modal').modal('show');
-            @endif
+                $('#login_modal').modal('show'); @endif
         }
 
         function showSizeChartDetail(id, name){
             $('#size-chart-show-modal .modal-title').html('');
             $('#size-chart-show-modal .modal-body').html('');
             if (id == 0) {
-                AIZ.plugins.notify('warning', '{{ translate("Sorry, There is no size guide found for this product.") }}');
+                AIZ.plugins.notify('warning', '{{ translate('Sorry, There is no size guide found for this product.') }}');
                 return false;
             }
             $.ajax({
                 type: "GET",
-                url: "{{ route('size-charts-show', '') }}/"+id,
-                data: {},
-                success: function(data) {
-                    $('#size-chart-show-modal .modal-title').html(name);
-                    $('#size-chart-show-modal .modal-body').html(data);
-                    $('#size-chart-show-modal').modal('show');
-                }
-            });
-        }
-    </script>
+        url: "{{ route('size-charts-show', '') }}/" +id, data: {}, success: function(data) { $('#size-chart-show-modal
+        .modal-title').html(name); $('#size-chart-show-modal .modal-body').html(data);
+        $('#size-chart-show-modal').modal('show'); } }); } </script>
 @endsection
