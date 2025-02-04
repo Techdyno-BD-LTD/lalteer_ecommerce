@@ -36,6 +36,7 @@
         <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css?v=') }}{{ rand(1000, 9999) }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/all.min.css') }}">
     
     <style>
         :root{
@@ -89,6 +90,7 @@
     <script>
         var AIZ = AIZ || {};
     </script>
+    <script src="{{ static_asset('assets/js/all.min.js') }}"></script>
 </head>
 <body>
 

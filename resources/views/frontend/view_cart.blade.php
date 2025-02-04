@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Cart Details -->
-    <section class="my-4" id="cart-details">
+    <section class="my-4" id="cart-details" style="background-image: url('{{ static_asset('assets/img/Frame 1171277141.jpg') }}'); background-size: cover; background-position: center;">
         @include('frontend.partials.cart.cart_details', ['carts' => $carts])
     </section>
 

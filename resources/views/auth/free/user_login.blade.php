@@ -24,7 +24,7 @@
                 <div class="col-xxl-6 col-lg-7">
                     <div class="right-content">
                         <div class="row align-items-center justify-content-center justify-content-lg-start">
-                            <div class="col-xxl-6 p-4 p-lg-5">
+                            <div class="col-xxl-12 p-4 p-lg-5">
                                 <!-- Site Icon -->
                                 {{-- <div class="size-48px mb-3 mx-auto mx-lg-0">
                                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}"
@@ -58,9 +58,9 @@
 
                                                 <div class="form-group email-form-group mb-1 d-none">
                                                     <label for="email"
-                                                        class="fs-12 fw-700 text-soft-dark">{{ translate('Email') }}</label>
+                                                        class="fs-14 fw-700 text-soft-dark">{{ translate('Email Address') }}</label>
                                                     <input type="email"
-                                                        class="form-control rounded-0 {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                        class="form-control rounded-1 {{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                         value="{{ old('email') }}"
                                                         placeholder="{{ translate('johndoe@example.com') }}" name="email"
                                                         id="email" autocomplete="off">
@@ -78,7 +78,7 @@
                                             @else
                                                 <div class="form-group">
                                                     <label for="email"
-                                                        class="fs-12 fw-700 text-soft-dark">{{ translate('Email') }}</label>
+                                                        class="fs-14 fw-700 text-soft-dark">{{ translate('Email Address') }}</label>
                                                     <input type="email"
                                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0"
                                                         value="{{ old('email') }}"
@@ -95,7 +95,7 @@
                                                 <!-- password -->
                                                 <div class="form-group">
                                                     <label for="password"
-                                                        class="fs-12 fw-700 text-soft-dark">{{ translate('Password') }}</label>
+                                                        class="fs-14 fw-700 text-soft-dark">{{ translate('Password') }}</label>
                                                     <div class="position-relative">
                                                         <input type="password"
                                                             class="form-control rounded-0 {{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -133,9 +133,26 @@
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
                                                 <button type="submit"
-                                                    class="btn btn-primary btn-block fw-700 fs-14 rounded-0 submit-button">{{ translate('Login') }}</button>
+                                                    class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{ translate('Login') }}</button>
                                             </div>
                                         </form>
+
+                                        <div>
+                                            <div class="text-center">
+                                                <span>or login with</span>
+                                            </div>
+                                            <div class="d-flex felx-row justify-content-center mt-3 mb-2">
+                                                <span class="d-flex flex-row gap-2" style="margin-right: 10px;">
+                                                    <i class="fa-brands fa-facebook text-primary fs-20" style="margin-right: 5px;"></i>
+                                                    <span style="margin">Facebook</span>
+                                                </span>
+                                                <span class="d-flex flex-row gap-2">
+                                                    <i class="fa-brands fa-google text-danger fs-20" style="margin-right: 5px;"></i>
+                                                    <span>Google</span>
+                                                </span>
+                                                
+                                            </div>
+                                        </div>
 
                                         <!-- DEMO MODE -->
                                         @if (env('DEMO_MODE') == 'On')
@@ -201,18 +218,18 @@
                                     </div>
 
                                     <!-- Register Now -->
-                                    <p class="fs-12 text-gray mb-0">
+                                    <p class="fs-12 text-gray mb-0 text-center">
                                         {{ translate('Dont have an account?') }}
                                         <a href="{{ route('user.registration') }}"
-                                            class="ml-2 fs-14 fw-700 animate-underline-primary">{{ translate('Register Now') }}</a>
+                                            class="ml-2 fs-14 fw-700 animate-underline-primary"><u>{{ translate('Register') }}</u></a>
                                     </p>
                                     <!-- Go Back -->
-                                    <a href="{{ url()->previous() }}"
+                                    {{-- <a href="{{ url()->previous() }}"
                                         class="mt-3 fs-14 fw-700 d-flex align-items-center text-primary"
                                         style="max-width: fit-content;">
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
                                         {{ translate('Back to Previous Page') }}
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
