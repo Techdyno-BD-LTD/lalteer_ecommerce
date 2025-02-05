@@ -322,6 +322,9 @@
                                         style="width: 116px; height: 116px;">
                                 </div>
                                 <div class="pt-2 pb-5">
+                                    <div style="position: absolute; z-index: 1;">
+                                        <img src="{{ static_asset('assets/img/first cotation 2.png') }}" alt="">
+                                    </div>
                                     <div class="bg-white py-4 rounded-2 custom-box position-relative">
                                         <span class="d-flex flex-column">
                                             <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
@@ -337,6 +340,10 @@
                                             generation engine, initially centred around our Ross Live Season 2 Campaign.
                                             Thorough
                                             this period, we found TW to be extremely knowledgeable.</p>
+                                    </div>
+                                    <div
+                                        style="position: absolute; z-index: 1; right: 0; margin-top: -25px !important; margin-right: 5px;">
+                                        <img src="{{ static_asset('assets/img/first cotation 1.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -347,6 +354,9 @@
                                         class="d-flex align-items-center mx-auto" style="width: 116px; height: 116px;">
                                 </div>
                                 <div class="pt-2 pb-5">
+                                    <div style="position: absolute; z-index: 1;">
+                                        <img src="{{ static_asset('assets/img/first cotation 2.png') }}" alt="">
+                                    </div>
                                     <div class="bg-white py-4 rounded-2 custom-box position-relative">
                                         <span class="d-flex flex-column">
                                             <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
@@ -363,6 +373,10 @@
                                             Thorough
                                             this period, we found TW to be extremely knowledgeable.</p>
                                     </div>
+                                    <div
+                                        style="position: absolute; z-index: 1; right: 0; margin-top: -25px !important; margin-right: 5px;">
+                                        <img src="{{ static_asset('assets/img/first cotation 1.png') }}" alt="">
+                                    </div>
                                 </div>
                             </div>
 
@@ -372,6 +386,9 @@
                                         class="d-flex align-items-center mx-auto" style="width: 116px; height: 116px;">
                                 </div>
                                 <div class="pt-2 pb-5">
+                                    <div style="position: absolute; z-index: 1;">
+                                        <img src="{{ static_asset('assets/img/first cotation 2.png') }}" alt="">
+                                    </div>
                                     <div class="bg-white py-4 rounded-2 custom-box position-relative">
                                         <span class="d-flex flex-column">
                                             <span class="opacity-80 fs-17 text-center">Andrew Faulkner </span>
@@ -387,6 +404,10 @@
                                             generation engine, initially centred around our Ross Live Season 2 Campaign.
                                             Thorough
                                             this period, we found TW to be extremely knowledgeable.</p>
+                                    </div>
+                                    <div
+                                        style="position: absolute; z-index: 1; right: 0; margin-top: -25px !important; margin-right: 5px;">
+                                        <img src="{{ static_asset('assets/img/first cotation 1.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>

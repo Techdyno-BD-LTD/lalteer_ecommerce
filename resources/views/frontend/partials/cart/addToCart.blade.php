@@ -28,7 +28,7 @@
         <div class="col-lg-12 pt-3">
             <div class="text-left">
                 <!-- Product name -->
-                Choose here
+                <strong>Choose a size</strong>
                 <form id="option-choice-form">
                     @csrf
                     <input type="hidden" name="id" value="{{ $product->id }}">
@@ -80,7 +80,7 @@
                                                             value="{{ $value }}"
                                                             @if ($key == 0) checked @endif>
                                                         <div
-                                                            class="aiz-megabox-elem rounded-0 d-flex btn btn-primary align-items-center justify-content-center py-1 px-3">
+                                                            class="aiz-megabox-elem rounded-1 d-flex btn btn-primary align-items-center justify-content-center py-1 px-3">
                                                             Add To Cart
                                                         </div>
 
@@ -151,6 +151,15 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Show Add to Cart Button if no variants -->
+                        @if ($product->choice_options == null || count(json_decode($product->choice_options)) == 0)
+                            <div class="row no-gutters mt-3">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        @endif
                     @else
                         <!-- Quantity -->
                         <input type="hidden" name="quantity" value="1">
