@@ -134,7 +134,7 @@ class OrderController extends Controller
                 $order_detail->tax = cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                 $order_detail->shipping_type = $cartItem['shipping_type'];
                 $order_detail->product_referral_code = $cartItem['product_referral_code'];
-                $order_detail->shipping_cost = $cartItem['shipping_cost'];
+                $order_detail->shipping_cost = session('shipping_cost', 0) / count($carts);
 
                 $shipping += $order_detail->shipping_cost;
 
@@ -150,7 +150,7 @@ class OrderController extends Controller
                 $product->save();
 
                 $order->seller_id = $product->user_id;
-              
+
                 $order->shipping_type = $cartItem['shipping_type'];
                 if ($cartItem['shipping_type'] == 'pickup_point') {
                     $order->pickup_point_id = $cartItem['pickup_point'];

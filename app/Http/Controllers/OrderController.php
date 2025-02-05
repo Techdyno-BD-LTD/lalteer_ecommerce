@@ -35,7 +35,7 @@ class OrderController extends Controller
         // Staff Permission Check
         $this->middleware(['permission:view_all_orders|view_inhouse_orders|view_seller_orders|view_pickup_point_orders|view_all_offline_payment_orders'])->only('all_orders');
         $this->middleware(['permission:view_order_details'])->only('show');
-        $this->middleware(['permission:delete_order'])->only('destroy','bulk_order_delete');
+        $this->middleware(['permission:delete_order'])->only('destroy', 'bulk_order_delete');
     }
 
     // All Orders
@@ -54,11 +54,9 @@ class OrderController extends Controller
 
         if (Route::currentRouteName() == 'inhouse_orders.index' && Auth::user()->can('view_inhouse_orders')) {
             $orders = $orders->where('orders.seller_id', '=', $admin_user_id);
-        }
-        elseif (Route::currentRouteName() == 'seller_orders.index' && Auth::user()->can('view_seller_orders')) {
+        } elseif (Route::currentRouteName() == 'seller_orders.index' && Auth::user()->can('view_seller_orders')) {
             $orders = $orders->where('orders.seller_id', '!=', $admin_user_id);
-        }
-        elseif (Route::currentRouteName() == 'pick_up_point.index' && Auth::user()->can('view_pickup_point_orders')) {
+        } elseif (Route::currentRouteName() == 'pick_up_point.index' && Auth::user()->can('view_pickup_point_orders')) {
             if (get_setting('vendor_system_activation') != 1) {
                 $orders = $orders->where('orders.seller_id', '=', $admin_user_id);
             }
@@ -70,25 +68,21 @@ class OrderController extends Controller
                 $orders->where('shipping_type', 'pickup_point')
                     ->where('pickup_point_id', Auth::user()->staff->pick_up_point->id);
             }
-        }
-        elseif (Route::currentRouteName() == 'all_orders.index' && Auth::user()->can('view_all_orders')) {
+        } elseif (Route::currentRouteName() == 'all_orders.index' && Auth::user()->can('view_all_orders')) {
             if (get_setting('vendor_system_activation') != 1) {
                 $orders = $orders->where('orders.seller_id', '=', $admin_user_id);
             }
-        }
-        elseif (Route::currentRouteName() == 'offline_payment_orders.index' && Auth::user()->can('view_all_offline_payment_orders')) {
+        } elseif (Route::currentRouteName() == 'offline_payment_orders.index' && Auth::user()->can('view_all_offline_payment_orders')) {
             $orders = $orders->where('orders.manual_payment', 1);
-            if($request->order_type != null){
+            if ($request->order_type != null) {
                 $order_type = $request->order_type;
-                $orders = $order_type =='inhouse_orders' ? 
-                            $orders->where('orders.seller_id', '=', $admin_user_id) : 
-                            $orders->where('orders.seller_id', '!=', $admin_user_id);
+                $orders = $order_type == 'inhouse_orders' ?
+                    $orders->where('orders.seller_id', '=', $admin_user_id) :
+                    $orders->where('orders.seller_id', '!=', $admin_user_id);
             }
-        }
-        elseif (Route::currentRouteName() == 'unpaid_orders.index' && Auth::user()->can('view_all_unpaid_orders')) {
+        } elseif (Route::currentRouteName() == 'unpaid_orders.index' && Auth::user()->can('view_all_unpaid_orders')) {
             $orders = $orders->where('orders.payment_status', 'unpaid');
-        }
-        else {
+        } else {
             abort(403);
         }
 
@@ -116,13 +110,13 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail(decrypt($id));
-        
+
         $order_shipping_address = json_decode($order->shipping_address);
         $delivery_boys = User::where('city', $order_shipping_address->city)
-                ->where('user_type', 'delivery_boy')
-                ->get();
-                
-        if(env('DEMO_MODE') != 'On') {
+            ->where('user_type', 'delivery_boy')
+            ->get();
+
+        if (env('DEMO_MODE') != 'On') {
             $order->viewed = 1;
             $order->save();
         }
@@ -235,7 +229,7 @@ class OrderController extends Controller
                 $order_detail->tax = cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                 $order_detail->shipping_type = $cartItem['shipping_type'];
                 $order_detail->product_referral_code = $cartItem['product_referral_code'];
-                $order_detail->shipping_cost = $cartItem['shipping_cost'];
+                $order_detail->shipping_cost = session('shipping_cost', 0) / count($carts);
 
                 $shipping += $order_detail->shipping_cost;
                 //End of storing shipping cost
@@ -382,11 +376,11 @@ class OrderController extends Controller
         $order->delivery_status = $request->status;
         $order->save();
 
-        if($request->status == 'delivered'){
+        if ($request->status == 'delivered') {
             $order->delivered_date = date("Y-m-d H:i:s");
             $order->save();
         }
-        
+
         if ($request->status == 'cancelled' && $order->payment_type == 'wallet') {
             $user = User::where('id', $order->user_id)->first();
             $user->balance += $order->grand_total;
@@ -394,7 +388,7 @@ class OrderController extends Controller
         }
 
         // If the order is cancelled and the seller commission is calculated, deduct seller earning
-        if($request->status == 'cancelled' && $order->user->user_type == 'seller' && $order->payment_status == 'paid' && $order->commission_calculated == 1){
+        if ($request->status == 'cancelled' && $order->user->user_type == 'seller' && $order->payment_status == 'paid' && $order->commission_calculated == 1) {
             $sellerEarning = $order->commissionHistory->seller_earning;
             $shop = $order->shop;
             $shop->admin_to_pay -= $sellerEarning;
@@ -444,13 +438,14 @@ class OrderController extends Controller
             }
         }
         // Delivery Status change email notification to Admin, seller, Customer
-        EmailUtility::order_email($order, $request->status);  
+        EmailUtility::order_email($order, $request->status);
 
         // Delivery Status change SMS notification
         if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'delivery_status_change')->first()->status == 1) {
             try {
                 SmsUtility::delivery_status_change(json_decode($order->shipping_address)->phone, $order);
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         //Send web Notifications to user
@@ -526,8 +521,8 @@ class OrderController extends Controller
         }
 
         // Payment Status change email notification to Admin, seller, Customer
-        if($request->status == 'paid'){
-            EmailUtility::order_email($order, $request->status);  
+        if ($request->status == 'paid') {
+            EmailUtility::order_email($order, $request->status);
         }
 
         //Sends Web Notifications to Admin, seller, Customer
@@ -606,19 +601,20 @@ class OrderController extends Controller
 
     public function orderBulkExport(Request $request)
     {
-        if($request->id){
-          return Excel::download(new OrdersExport($request->id), 'orders.xlsx');
+        if ($request->id) {
+            return Excel::download(new OrdersExport($request->id), 'orders.xlsx');
         }
         return back();
     }
 
-    public function unpaid_order_payment_notification_send(Request $request){
-        if($request->order_ids != null){
+    public function unpaid_order_payment_notification_send(Request $request)
+    {
+        if ($request->order_ids != null) {
             $notificationType = get_notification_type('complete_unpaid_order_payment', 'type');
-            foreach (explode(",",$request->order_ids) as $order_id) {
+            foreach (explode(",", $request->order_ids) as $order_id) {
                 $order = Order::where('id', $order_id)->first();
                 $user = $order->user;
-                if($notificationType->status == 1 && $order->payment_status == 'unpaid'){
+                if ($notificationType->status == 1 && $order->payment_status == 'unpaid') {
                     $order_notification['order_id']     = $order->id;
                     $order_notification['order_code']   = $order->code;
                     $order_notification['user_id']      = $order->user_id;
@@ -629,8 +625,7 @@ class OrderController extends Controller
                 }
             }
             flash(translate('Notification Sent Successfully.'))->success();
-        }
-        else{
+        } else {
             flash(translate('Something went wrong!.'))->warning();
         }
         return back();
